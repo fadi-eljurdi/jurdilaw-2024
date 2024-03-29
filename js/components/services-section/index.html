@@ -1,0 +1,37 @@
+<section style="overflow-x: hidden !important;">
+    <div class="container">
+        <div class="row justify-content-center g-3">
+            <div class="col-12">
+                <div class="d-flex flex-column gap-2">
+                    <h3 data-aos="zoom-in-right" data-aos-duration="1000" class="font-title text-j-grey ps-2 border-tag-left">Our Services</h3>
+                    <p data-aos="zoom-out" data-aos-duration="1500" class="font-normal text-j-dark fs-small">Our focus is media and technology but we understand that our clients may need a helping hand in other areas of the law, for that we extend our assistance to our clients to cover other areas of practice, providing our clients with 360-degree legal service. </p>
+                </div>
+            </div>
+            <div class="col-12">
+                <swiper-container :pagination="{clickable:true}" :spaceBetween="10" :breakpoints="{
+                    768: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                    },
+                }">
+                    <swiper-slide v-for="node in store.services" :key="node">
+                        <section class="bg-light d-flex flex-column gap-2 align-items-center p-3 rounded-15 border">
+                            <!-- <div class="ratio ratio-1x1" style="width: 90px;">
+                                <img :src="node.thumbnail" alt="icon" class="object-fit-cover rounded-circle shadow-sm">
+                            </div> -->
+                            <a style="height: 24px;"  :href="node.url" ><strong class="font-title text-center text-j-primary fs-6 text-uppercase py-2 mt-2">{{node.title}}</strong></a>
+                            <p style="height: 136.5px;" class="font-normal text-j-dark text-fade-7 fs-small text-justify">{{node.description}}</p>
+                            <!-- <a href="" class="fs-x-small text-j-dark ls-1">show more</a> -->
+                            <a :aria-label="node.title" :href="node.url" class="text-j-dark fs-x-small font-normal d-flex align-items-center gap-2">show more <i class="m-0 bi bi-arrow-right"></i></a>
+                        </section>
+                    </swiper-slide>
+                </swiper-container>
+                
+            </div>
+        </div>
+    </div>
+</section>

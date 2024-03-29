@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-end align-items-center gap-2">
+    <!-- <span role="button" title="share on social media" class="d-flex gap-1 px-2 align-items-center bg-light border border-2 rounded fs-smaller">
+        <span class="material-symbols-outlined fs-6">g_translate</span>
+        <span class="text-primary-200 roboto text-lowercase">translate</span>
+    </span> -->
+    <div class="d-flex gap-2">
+        <!-- <span disabled role="button" title="share on social media" class="d-flex gap-1 px-2 align-items-center bg-light border border-2 rounded fs-smaller">
+            <span class="material-symbols-outlined fs-6">comment</span>
+            <span class="text-primary-200 roboto text-lowercase">comment</span>
+        </span> -->
+        <span @click="utilities.shareBy(title,url)" role="button" title="share on social media" class="d-flex gap-1 px-2 align-items-center bg-light border border-2 rounded fs-smaller">
+            <span class="material-symbols-outlined fs-6">share</span>
+            <span class="text-primary-200 roboto text-lowercase">share</span>
+        </span>
+    </div>
+</div>

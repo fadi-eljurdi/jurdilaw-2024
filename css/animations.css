@@ -1,0 +1,35 @@
+.spinner-container{
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--j-light);
+}
+.spinner {
+    width: 40px;
+    height: 40px;
+    animation: spinner-coin 3.5999999999999996s infinite;
+    border-radius: 50%;
+    background-color: var(--j-primary);
+    transform-origin: center;
+}
+
+@keyframes spinner-coin {
+    0% {
+        transform: perspective(160px) rotateY(0deg);
+    }
+
+    10% {
+        transform: perspective(160px) rotateY(-65deg);
+    }
+
+    90%,
+    100% {
+        transform: perspective(160px) rotateY(2880deg);
+    }
+}

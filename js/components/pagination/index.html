@@ -1,0 +1,5 @@
+<section aria-label="pagination bar" class="w-100 p-3 d-flex align-items-center gap-1 fs-small bg-light shadow-sm font-normal">
+    <a href="/" aria-label="home page" >home</a><i class="bi bi-chevron-compact-right fs-small"></i>
+    <a :href="'/' + folder"  aria-label="folder" >{{folder}}</a><i class="bi bi-chevron-compact-right fs-small"></i>
+    <span class="text-fade fw-bold"><slot></slot></span>
+</section>

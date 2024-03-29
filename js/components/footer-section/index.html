@@ -1,0 +1,86 @@
+<footer class="bg-light rounded-top-25">
+    <section class="container py-3" style="overflow-x: hidden !important;">
+      <div class="row g-3 justify-content-between">
+        <div class="col-12 col-lg-4">
+          <aside class="text-j-dark d-flex flex-column gap-3 pt-5">
+            <div class="">
+              <h5 class="font-title fs-5 border-tag-bottom w-fit pb-1">JURDI & CO LLC</h5>
+              <p class="fs-smaller font-normal text-fade2 pt-2">Your In-House external counsel.</p>
+            </div>
+            <nav class="d-flex flex-column roboto gap-1">
+                <a aria-label="home" href="/" class="d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">Home</span>
+                </a>
+                <a aria-label="services"  href="/services/" class="d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">Services</span>
+                </a>
+                <a aria-label="blogs"  href="/blogs/" class="d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">News & Insights</span>
+                </a>
+                <a aria-label="privacy-policy"  href="/docs/privacy-policy.html" class="d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">Privacy Policy</span>
+                </a>
+                <a aria-label="disclaimer"  href="/docs/disclaimer.html" class="d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">Disclaimer</span>
+                </a>
+                <a aria-label="terms"  href="/docs/terms.html" class="d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">Terms & Conditions</span>
+                </a>
+                <a aria-label="acceptable-usage"  href="/docs/acceptable-usage.html" class="d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">Acceptable Usage</span>
+                </a>
+                <a aria-label="cookie-policy"  href="/docs/cookie-policy.html" class="d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">Cookie Policy</span>
+                </a>
+                <a aria-label="contact"  href="/contact/" class="d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">Contact</span>
+                </a>
+            </nav>
+          </aside>
+        </div>
+        <div class="col-12 col-lg-4">
+          <aside class="text-j-dark d-flex flex-column gap-3 pt-5">
+            <div class="">
+              <h5 class="font-title fs-5 border-tag-bottom w-fit pb-1">Our Services</h5>
+              <p class="text-j-dark fs-smaller font-normal text-fade2 pt-2">We provide comprehensive legal services to empower your business across all its needs.</p>
+            </div>
+            <nav class="d-flex flex-column roboto gap-1">
+                <a :aria-label="node.title"  :href="node.url" class="d-flex align-items-center gap-2" v-for="node in store.services">
+                    <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">{{node.title}}</span>
+                </a>
+            </nav>
+          </aside>
+        </div>
+        <div class="col-12 col-lg-4">
+          <aside class="text-j-dark d-flex flex-column gap-3 pt-5">
+            <div class="">
+              <h5 class="font-title fs-5 border-tag-bottom w-fit pb-1">News & Insights</h5>
+              <p class="text-j-dark fs-smaller font-normal text-fade2 pt-2">Explore JURDI & CO's blog for insightful articles on media, technology, IP, and more.</p>
+            </div>
+            <nav class="d-flex flex-column roboto gap-1">
+                
+              <a :aria-label="node.title"  :href="node.url" class="d-flex align-items-center gap-2" v-for="node in store.blogs.slice(-1 * store.services.length).reverse()">
+                <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 text-fade w-100">{{node.title}}</span>
+              </a>
+            </nav>
+          </aside>
+        </div>
+      </div>
+      <hr class="container my-4">
+      <div class="row g-3 justify-content-between pb-5">
+        <div class="col-12 col-md-6 col-lg-4">
+          <h5 class="text-j-dark font-title text-center text-md-start">Connect with us</h5>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <nav class="d-flex gap-3 justify-content-center justify-content-md-end text-j-grey fs-5">
+            <a aria-label="whatsapp"  :href="'https://wa.me/'+store.contact.whatsapp"><i class="bi bi-whatsapp"></i></a>
+            <a aria-label="email"  :href="'mailto:'+store.contact.email"><i class="bi bi-envelope"></i></a>
+            <!-- <a :href="store.contact.instagram"><i class="bi bi-instagram"></i></a> -->
+            <!-- <a href=""><i class="bi bi-twitter"></i></a> -->
+            <a aria-label="linkedin"  :href="store.contact.linkedIn"><i class="bi bi-linkedin"></i></a>
+            <!-- <a href=""><i class="bi bi-youtube"></i></a> -->
+          </nav>
+        </div>
+      </div>
+    </section>
+</footer>

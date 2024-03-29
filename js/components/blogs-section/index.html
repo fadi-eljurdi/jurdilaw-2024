@@ -1,0 +1,43 @@
+<section style="overflow-x: hidden !important;">
+    <hr class="container my-5" v-if="path == '/' || path == '/index.html' ">
+    <div class="container">
+        <div class="row justify-content-center g-3">
+            <div class="col-12 col-lg-3">
+                <div class="d-flex flex-column gap-3 p-3 pb-5">
+                    <h3 data-aos="zoom-in-right" data-aos-duration="1000" class="font-title text-j-grey ps-2 border-tag-left">Our News <i class="font-handwriting text-j-primary">&</i> Insights</h3>
+                    <p data-aos="zoom-out" data-aos-duration="1500"  class="font-normal text-j-dark fs-small">Explore JURDI & CO's blog for insightful articles on media, technology, IP, and more.</p>
+                    <!-- <a href="" class="btn-action-outline">Explore all blogs</a> -->
+                    <a href="" class="text-j-dark fs-x-small font-normal d-flex align-items-center gap-2">Explore all blogs <i class="m-0 bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-9" data-aos="fade-left" data-aos-duration="1500">
+                <swiper-container :pagination="{clickable:true}" :spaceBetween="15" :breakpoints="{
+                    768: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 15,
+                    },
+                }">
+                    <swiper-slide v-for="node in filteredBlogs" :key="node">
+                        <section class="d-flex flex-column shadow-sm rounded-chat">
+                            <!-- <div class="ratio ratio-16x9">
+                                <img src="https://picsum.photos/1920/1080" alt="icon" class="object-fit-cover rounded-top">
+                            </div> -->
+                            <div class="p-2 pt-3 bg-glass d-flex flex-column gap-2">
+                                <span class="material-symbols-outlined fs-1 text-j-grey">news</span>
+                                <p class="font-normal text-j-grey fs-x-small fw-bold"><span class="px-2 py-1 bg-j-primary rounded text-light ls-1 me-2">BLOG</span><time>{{utilities.timo(node.date)}}</time></p>
+                                <h5 class="font-title text-j-dark fs-5 text-fade-2" style="min-height: 48px;">{{node.title}}</h5>
+                                <p class="font-normal text-j-dark text-justify fs-small text-fade-4" style="min-height: 78px;">{{node.description}}</p>
+                                <a :aria-label="node.title" :href="node.url" class="fs-x-small text-j-dark font-normal text-center ls-1 mt-3 mb-1">continue reading</a>
+                            </div>
+                        </section>
+                    </swiper-slide>
+                </swiper-container>
+                
+            </div>
+        </div>
+    </div>
+</section>

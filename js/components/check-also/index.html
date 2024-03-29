@@ -1,0 +1,23 @@
+<aside class="p-2 bg-light rounded shadow-sm d-flex flex-column gap-3">
+    <h5 class="fs-6 text-primary-200 font-title">Check also</h5>
+    <div class="d-flex flex-column gap-2">
+        <a :href="node.url" :aria-label="node.title" class="d-flex gap-1 align-items-center" v-for="node in store.services.slice(-8)" :key="node.id">
+            <span class="material-symbols-outlined fs-6 text-primary-150">feed</span>
+            <span class="text-secondary fs-small text-fade">services / {{node.title}}</span>
+        </a>
+        <!-- <a href="/projects/" aria-label="show more" class="text-success fs-x-small icon-link icon-link-hover ls-1 mb-2">
+            <span>show all projects</span> <i class="bi bi-arrow-right"></i>
+        </a> -->
+        
+        <a :href="node.url" :aria-label="node.title" class="d-flex gap-1 align-items-center" v-for="node in store.blogs.slice(-8)" :key="node.id">
+            <span class="material-symbols-outlined fs-6 text-primary-150">feed</span>
+            <span class="text-secondary fs-small text-fade">blogs / {{node.title}}</span>
+        </a>
+        <!-- <a href="/blogs/" aria-label="show more" class="text-success fs-x-small icon-link icon-link-hover ls-1 mb-2">
+            <span>show all blogs</span> <i class="bi bi-arrow-right"></i>
+        </a> -->
+    </div>
+    <!-- <a href="/blogs/" aria-label="show more" class="text-success fs-x-small icon-link icon-link-hover ls-1 mb-2">
+            <span>show all</span> <i class="bi bi-arrow-right"></i>
+    </a> -->
+</aside>

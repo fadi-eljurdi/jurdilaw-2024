@@ -1,0 +1,56 @@
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    /* Your CSS styles for extra small devices here */
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 0px) and (max-width: 767.98px) {
+
+    /* Your CSS styles for small devices here */
+    .contact-links {
+        /* display: none !important; */
+
+        top: -3rem !important;
+        left: 1.5rem !important;
+        /* background-color: var(--j-primary) !important; */
+        /* background-color: #FBAB7E !important; */
+        /* background-image: linear-gradient(62deg, var(--j-primary) 0%, #F7CE68 100%) !important; */
+        /* color: var(--j-dark) !important; */
+
+    }
+
+    .contact-container {
+        padding: 280px 1rem 1rem !important;
+    }
+
+    .contact-form {
+        width: 100% !important;
+    }
+
+    .contact-icon {
+        /* color: var(--j-light) !important; */
+    }
+
+    .contact-title {
+        /* border-bottom-color: var(--j-light) !important; */
+    }
+    .hero-title{
+        font-size: 30px !important;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /* Your CSS styles for medium devices here */
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    /* Your CSS styles for large devices here */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    /* Your CSS styles for extra large devices here */
+}

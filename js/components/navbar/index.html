@@ -1,0 +1,33 @@
+<section id="navbar" style="transition: .5s;" :class="'position-fixed top-0 start-0 z-2 w-100 p-3 d-flex justify-content-between align-items-center'">
+    <section class="d-flex align-items-center gap-5">
+        <img src="/assets/logo-3.png" alt="Jurdi logo" class="img-fluid" width="100"> 
+    </section>
+    
+    <section class="d-none d-lg-flex align-items-center gap-5 font-title">
+        <nav class="d-flex align-items-center gap-3">
+            <a aria-label="Home" href="/" class="navbar-link-active">Home</a>
+            <a aria-label="Services" href="/services/" class="navbar-link">Services</a>
+            <a aria-label="Policies" href="/docs/" class="navbar-link">Policies & Terms of use</a>
+            <a aria-label="Blogs" href="/blogs/" class="navbar-link">News & Insights</a>
+        </nav>
+        <a href="/contact/" class="btn-action">Contact</a>
+    </section>
+    <i class="d-block d-lg-none bi bi-list fs-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"></i>
+</section>
+<aside class="offcanvas offcanvas-end" id="sidebar">
+    <div class="offcanvas-header">
+        <div class=""></div>
+        <i class="bi bi-arrow-return-right fs-3" data-bs-dismiss="offcanvas" aria-label="Close" role="button"></i>
+    </div>
+    <div class="offcanvas-body">
+        <aside class="d-flex flex-column gap-2 align-items-center">
+            <img src="/assets/logo-3.png" alt="Jurdi logo" class="img-fluid" width="100">
+            <hr>
+            <a aria-label="Home" href="/" class="w-100 btn btn-outline-dark">Home Page</a>
+            <a aria-label="Services" href="/services/" class="w-100 btn btn-outline-dark">Services</a>
+            <a href="/blogs/" class="w-100 btn btn-outline-dark">News & Insights</a>
+            <a aria-label="Policies" href="/docs/" class="w-100 btn btn-outline-dark">Privacy & Terms of use</a>
+            <a aria-label="Blogs" href="/contact/" class="w-100 btn-action">Contact</a>
+        </aside>
+    </div>
+</aside>
