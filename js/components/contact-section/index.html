@@ -7,12 +7,17 @@
                     <input v-model="inputSubject" type="text" class="contact-input font-normal fs-small" placeholder="The Subject">
                     <textarea v-model="inputMessage" rows="5" class="contact-input font-normal fs-small" placeholder="Type your message.."></textarea>
                 </section>
-                <a aria-label="send message" :href="sendMessage" class="btn-action w-fit">Send message</a>
+                <!-- <a aria-label="send message" :href="sendMessage" class="btn-action w-fit">Send message</a> -->
+                <button :disabled="store.spinner" class="btn-action w-fit" @click="sendMessageTo()">Send message</button>
                 
                 <aside data-aos="zoom-in-up" data-aos-duration="1500" class="contact-links shadow border rounded bg-light">
                     <strong class="font-title ls-1 text-j-dark pb-2 border-tag-bottom contact-title w-fit">Contact us</strong>
                     <div class="d-flex flex-column gap-3 font-title">
-                        <a aria-label="email" :href="'mailto:'+store.contact.email" class="d-flex align-items-center gap-3">
+                        <div v-if="store.spinner" class="d-flex align-items-center gap-3 w-100">
+                            <div class="skeleton rounded-circle" style="width: 1.5rem; height: 1.5rem;"></div>
+                            <div class="skeleton rounded-pill" style="width: 150px; height: 1rem;"></div>
+                        </div>
+                        <a v-else aria-label="email" :href="'mailto:'+store.contact.email" class="d-flex align-items-center gap-3">
                             <i class="bi bi-envelope contact-icon fs-3"></i>
                             <span>{{store.contact.email}}</span>
                         </a>

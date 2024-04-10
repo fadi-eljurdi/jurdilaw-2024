@@ -44,7 +44,14 @@
               <h5 class="font-title fs-5 border-tag-bottom w-fit pb-1">Our Services</h5>
               <p class="text-j-dark fs-smaller font-normal text-fade2 pt-2">We provide comprehensive legal services to empower your business across all its needs.</p>
             </div>
-            <nav class="d-flex flex-column roboto gap-1">
+            
+            <nav v-if="store.spinner" class="d-flex flex-column roboto gap-3">
+              <div class="d-flex align-items-center gap-2" v-for="node in ['','','','','','','','']">
+                <div class="skeleton rounded-circle" style="width: 1rem; height: 1rem;"></div>
+                <div class="skeleton rounded-pill" style="width: 90%; height: .5rem;"></div>
+              </div>
+            </nav>
+            <nav v-else class="d-flex flex-column roboto gap-1">
                 <a :aria-label="node.title"  :href="node.url" class="d-flex align-items-center gap-2" v-for="node in store.services">
                     <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">{{node.title}}</span>
                 </a>
@@ -57,8 +64,13 @@
               <h5 class="font-title fs-5 border-tag-bottom w-fit pb-1">News & Insights</h5>
               <p class="text-j-dark fs-smaller font-normal text-fade2 pt-2">Explore JURDI & CO's blog for insightful articles on media, technology, IP, and more.</p>
             </div>
-            <nav class="d-flex flex-column roboto gap-1">
-                
+            <nav v-if="store.spinner" class="d-flex flex-column roboto gap-3">
+              <div class="d-flex align-items-center gap-2" v-for="node in ['','','','','','','','']">
+                <div class="skeleton rounded-circle" style="width: 1rem; height: 1rem;"></div>
+                <div class="skeleton rounded-pill" style="width: 90%; height: .5rem;"></div>
+              </div>
+            </nav>
+            <nav v-else class="d-flex flex-column roboto gap-1">
               <a :aria-label="node.title"  :href="node.url" class="d-flex align-items-center gap-2" v-for="node in store.blogs.slice(-1 * store.services.length).reverse()">
                 <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 text-fade w-100">{{node.title}}</span>
               </a>
@@ -72,13 +84,15 @@
           <h5 class="text-j-dark font-title text-center text-md-start">Connect with us</h5>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
-          <nav class="d-flex gap-3 justify-content-center justify-content-md-end text-j-grey fs-5">
+          <nav v-if="store.spinner" class="d-flex gap-3 justify-content-center justify-content-md-end text-j-grey fs-5">
+            <div class="skeleton rounded-circle" style="width: 1.5rem; height: 1.5rem;"></div>
+            <div class="skeleton rounded-circle" style="width: 1.5rem; height: 1.5rem;"></div>
+            <div class="skeleton rounded-circle" style="width: 1.5rem; height: 1.5rem;"></div>
+          </nav>
+          <nav v-else class="d-flex gap-3 justify-content-center justify-content-md-end text-j-grey fs-5">
             <a aria-label="whatsapp"  :href="store.contact.whatsapp"><i class="bi bi-whatsapp"></i></a>
             <a aria-label="email"  :href="'mailto:'+store.contact.email"><i class="bi bi-envelope"></i></a>
-            <!-- <a :href="store.contact.instagram"><i class="bi bi-instagram"></i></a> -->
-            <!-- <a href=""><i class="bi bi-twitter"></i></a> -->
             <a aria-label="linkedin"  :href="store.contact.linkedIn"><i class="bi bi-linkedin"></i></a>
-            <!-- <a href=""><i class="bi bi-youtube"></i></a> -->
           </nav>
         </div>
       </div>

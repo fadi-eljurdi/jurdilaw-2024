@@ -7,13 +7,14 @@ export default {
     isLogedIn: false,
     geminiToken: '',
     api: 'https://script.google.com/macros/s/AKfycbx1w87noC2uRzUKV3Bj80e4UaQxtVZ6ZtSwyiciQ58VLiQW6I-G86KdxKgr6ZVQgnRf/exec',
-    
+
+    spinner: false,
     services: [],
     blogs: [],
     contact: {},
-    nextContact:{},
+    nextContact: {},
     nextPage: new Page(),
-    navbarBg:'bg-transparent',
+    navbarBg: 'bg-transparent',
     nextUpdatedPage: new Page()
 
 

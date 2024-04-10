@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <swiper-container :pagination="{clickable:true}" :spaceBetween="10" :breakpoints="{
+                <swiper-container v-if="store.spinner" :pagination="{clickable:true}" :spaceBetween="10" :breakpoints="{
                     768: {
                         slidesPerView: 1,
                         spaceBetween: 10,
@@ -18,19 +18,47 @@
                         spaceBetween: 10,
                     },
                 }">
-                    <swiper-slide v-for="node in store.services" :key="node">
-                        <section class="bg-light d-flex flex-column gap-2 align-items-center p-3 rounded-15 border">
-                            <!-- <div class="ratio ratio-1x1" style="width: 90px;">
-                                <img :src="node.thumbnail" alt="icon" class="object-fit-cover rounded-circle shadow-sm">
-                            </div> -->
+                    <swiper-slide v-for="node in filteredServices" :key="node">
+                        <section class="bg-light d-flex flex-column gap-4 align-items-center p-3 py-4 rounded-15 border">
+
+                            <div class="rounded-pill skeleton" style="width: 50%; height: .8rem;"></div>
+                            
+                            <div class="d-flex flex-column align-items-start gap-2 w-100">
+                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
+                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
+                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
+                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
+                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
+                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
+                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
+                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
+                                <div class="rounded-pill skeleton" style="width: 70%; height: .3rem;"></div>
+                            </div>
+                            
+                            <div class="rounded-pill skeleton" style="width: 25%; height: .4rem;"></div>
+                        </section>
+                        
+                    </swiper-slide>
+                </swiper-container>
+                <swiper-container v-else :pagination="{clickable:true}" :spaceBetween="10" :breakpoints="{
+                    768: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                    },
+                }">
+                    <swiper-slide v-for="node in filteredServices" :key="node">
+                        
+                        <section class="bg-light d-flex flex-column gap-3 align-items-center p-3 py-4 rounded-15 border">
                             <a style="height: 24px;"  :href="node.url" ><strong class="font-title text-center text-j-primary fs-6 text-uppercase py-2 mt-2">{{node.title}}</strong></a>
                             <p style="height: 136.5px;" class="font-normal text-j-dark text-fade-7 fs-small text-justify">{{node.description}}</p>
-                            <!-- <a href="" class="fs-x-small text-j-dark ls-1">show more</a> -->
                             <a :aria-label="node.title" :href="node.url" class="text-j-dark fs-x-small font-normal d-flex align-items-center gap-2">show more <i class="m-0 bi bi-arrow-right"></i></a>
                         </section>
                     </swiper-slide>
                 </swiper-container>
-                
             </div>
         </div>
     </div>

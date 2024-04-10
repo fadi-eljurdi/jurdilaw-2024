@@ -11,6 +11,10 @@ export default {
     },
     computed: {
         filteredBlogs() {
+            if (this.store.spinner) {
+                return ['', '', '', '', '', '', '', '', '', '']
+            }
+
             if (this.path == '/blogs/') return this.store.blogs
             return this.store.blogs.slice(-8).reverse()
         }

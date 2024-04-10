@@ -45,10 +45,11 @@
 
 <body id="app" style="overflow-x: hidden !important;">
 
-    <section v-if="spinner" class="position-fixed z-3 bg-light w-100 h-100 bg-blocks d-flex justify-content-center align-items-center">
+    <!-- <section v-if="spinner" class="position-fixed z-3 bg-light w-100 h-100 bg-blocks d-flex justify-content-center align-items-center">
         <div class="spinner"></div>
-    </section>
+    </section> -->
     <header>
+        <div v-if="store.spinner" class="spinner-line"></div>
         <navbar></navbar>
     </header>
     <hero-section></hero-section>

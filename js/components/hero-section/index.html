@@ -3,7 +3,13 @@
     <section class="container">
         <div class="row justify-content-center align-items-end">
             <div class="col-1">
-                <aside data-aos="zoom-in-up" data-aos-duration="1000" class="fs-5 text-j-dark d-flex flex-column gap-3 align-items-end">
+                <aside v-if="store.spinner" data-aos="zoom-in-up" data-aos-duration="1000" class="fs-5 text-j-dark d-flex flex-column gap-3 align-items-end">
+                    <div class="skeleton rounded-circle" style="width: 1.5rem; height: 1.5rem;"></div>
+                    <div class="skeleton rounded-circle" style="width: 1.5rem; height: 1.5rem;"></div>
+                    <div class="skeleton rounded-circle" style="width: 1.5rem; height: 1.5rem;"></div>
+                    
+                </aside>
+                <aside v-else data-aos="zoom-in-up" data-aos-duration="1000" class="fs-5 text-j-dark d-flex flex-column gap-3 align-items-end">
                     <a aria-label="whatsapp" :href="store.contact.whatsapp"><i class="bi bi-whatsapp"></i></a>
                     <a aria-label="linkedIn" :href="store.contact.linkedIn"><i class="bi bi-linkedin"></i></a>
                     <a aria-label="email" :href="'mailto:'+store.contact.email"><i class="bi bi-envelope"></i></a>

@@ -41,22 +41,22 @@ const app = Vue.createApp({
         },
         async getProfile() {
             try {
-                this.spinner = true
+                this.store.spinner = true
                 fetch(this.store.api + '?getProfile').then(res => res.json()).then(res => {
                     console.log(res);
                     
                     // this.store.links = res.links.map(node => new Link(node))
-                    this.store.blogs = res.data.blogs.map(node => new Blog(node))
-                    this.store.services = res.data.services.map(node => new Service(node))
-
+                    this.store.blogs = res.data.blogs.filter(node => node.badge != 'DEMO').map(node => new Blog(node))
+                    this.store.services = res.data.services.filter(node => node.badge != 'DEMO').map(node => new Service(node))
                     this.store.contact = new Contact(res.data.contact)     
                     console.log(this.store.services);               
-                    this.spinner = false
+                    this.store.spinner = false
                 })
 
             } catch (err) {
+                alert('Weak network Please refresh the page!')
                 console.log(err);
-                this.spinner = false
+                this.store.spinner = false
             }
 
         },

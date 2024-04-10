@@ -18,4 +18,11 @@ export default {
             },
         }
     },
+    computed: {
+        filteredServices() {
+            return this.store.spinner ? ['','','','','','','','','',''] : this.store.services
+            // return this.store.services.filter(s => s.badge != 'DEMO')
+            // return this.store.services
+        }
+    }
 }
