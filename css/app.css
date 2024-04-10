@@ -367,9 +367,10 @@ a {
 
 /* IMAGES */
 /* Widths & Height */
-.z-4{
+.z-4 {
     z-index: 4 !important;
 }
+
 .w-100vw {
     width: 100vw !important;
 }
@@ -517,4 +518,14 @@ a {
 
 .offcanvas {
     width: 80% !important;
+}
+
+.point {
+    cursor: pointer !important;
+}
+
+
+.bg-test {
+    /* background-color: #B3C8CF; */
+    background-color: #1d283a;
 }

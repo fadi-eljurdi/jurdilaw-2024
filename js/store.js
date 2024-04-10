@@ -1,25 +1,20 @@
 import Page from './classes/Page.js'
 export default {
     version: '1.1',
-    showReels: false,
-    showMeetingModal: false,
-    showSubscribtionModal: false,
-    logoSrc: '/assets/logo-3.jpg',
     OAuthUser: false,
     username: '',
     password: '',
-    isLogedIn: true,
-    githubToken: '',
+    isLogedIn: false,
     geminiToken: '',
-    api: 'https://script.google.com/macros/s/AKfycbzayZLP651XR7YC-jlk8Dg-yxg5ncH0SeM86ZhKDpKPMIRzyE37wwid06aIaXLeGQ-F/exec',
-    reels: [],
+    api: 'https://script.google.com/macros/s/AKfycbx1w87noC2uRzUKV3Bj80e4UaQxtVZ6ZtSwyiciQ58VLiQW6I-G86KdxKgr6ZVQgnRf/exec',
+    
     services: [],
     blogs: [],
-    links: [],
     contact: {},
+    nextContact:{},
     nextPage: new Page(),
-    nextPageTemplate: null,
-    navbarBg:'bg-transparent'
+    navbarBg:'bg-transparent',
+    nextUpdatedPage: new Page()
 
 
 }

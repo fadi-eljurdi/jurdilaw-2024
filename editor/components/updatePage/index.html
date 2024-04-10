@@ -1,0 +1,245 @@
+<section class="container">
+    <div class="row g-3">
+        <div class="col-12">
+            <aside class="bg-light shadow-sm rounded">
+                <div class="accordion" id="pageEditor">
+                    <div class="accordion-item">
+                        <h2 @click="getUpdatedPayload()" class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                <span class="sans fw-bold">1. Updating Page Details</span>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#pageEditor">
+                            <div class="p-2">
+                                <aside class="d-flex flex-column gap-2">
+                                    
+                                    
+
+                                    <!-- BADGE -->
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-patch-check"></i>
+                                        </span>
+                                        <input v-model="updatedPage.badge" type="text" placeholder="Badge" class="form-control">
+                                    </div>
+                                    
+                                    <!-- Images -->
+                                    
+                                    <div class="input-group">
+                                        <span class="input-group-text" @dblclick="resetThumbnails()">
+                                            <i class="bi bi-image"></i>
+                                        </span>
+                                        <div class="form-control text-secondary d-flex gap-3 align-items-center justify-content-between" @click="selectImages" aria-label="add images" role="button" title="add images" >
+                                            <span class="">Thumbnail</span>
+                                            
+                                            <div class="d-flex gap-2 align-items-center mx-2">
+                                                <img v-if="typeof(updatedPage.media) == 'object'" v-for="node in updatedPage.media" :src="node.src64" :alt="node.alt" width="40" height="40" class="object-fit-contain rounded border">
+                                                <img v-else v-for="node in updatedPage.media.split(',')" :src="node" :alt="node" width="40" height="40" class="object-fit-contain rounded border">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <!-- media links -->
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-link"></i>
+                                        </span>
+                                        <input v-model="updatedPage.links" type="text" placeholder="Media Links" class="form-control">
+                                    </div>
+
+                                    <!-- TITLE -->
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-type-h1"></i>
+                                        </span>
+                                        <!-- <input v-model="updatedPage.title" type="text" placeholder="Title" class="form-control"> -->
+                                        <textarea v-model="updatedPage.title" type="text" placeholder="Title" class="form-control fs-small" rows="2"></textarea>
+                                        <span title="Gemini AI" role="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#titleAiModel">
+                                            <i class="bi bi-stars text-primary-200"></i>
+                                        </span>
+                                        <!-- Title Ai Modal -->
+                                        <div class="modal fade" id="titleAiModel" tabindex="-1">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content p-3 text-center d-flex flex-column gap-3 align-items-center justify-content-center">
+                                                <i class="bi bi-stars fs-2 text-primary-100"></i>
+                                                <h1 class="bungee text-primary-200 fs-2">Gemini AI</h1>
+                                                <p class="roboto text-secondary"><b>Prompt: </b>Generate a single, direct blog title about {{updatedPage.title}}. Aim for a professional and creative tone.</p>
+                                                <div style="height: 46px;" @click="geminiRun('title',`Generate a single, direct blog title about ${updatedPage.title}. Aim for a professional and creative tone.`)" class="bg-gradient sans text-light fs-5 px-3 py-2 rounded ls-1 w-100 d-flex justify-content-center align-items-center" role="button">
+                                                    <div v-if="spinner" v-cloak class="spinner-line"></div>
+                                                    <span v-else >Generate</span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <!-- Description -->
+                                    <div class="input-group">
+                                        <div class="input-group-text"><i class="bi bi-card-text"></i></div>                                        
+                                        <textarea v-model="updatedPage.description" type="text" placeholder="Description" class="form-control fs-small" rows="2"></textarea>
+                                        
+                                        <span title="Gemini AI" role="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#descriptionAiModel">
+                                            <i class="bi bi-stars text-primary-200"></i>
+                                        </span>
+                                        <!-- Description Ai Modal -->
+                                        <div class="modal fade" id="descriptionAiModel" tabindex="-1">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content p-3 text-center d-flex flex-column gap-3 align-items-center justify-content-center">
+                                                <i class="bi bi-stars fs-2 text-primary-100"></i>
+                                                <h1 class="bungee text-primary-200 fs-2">Gemini AI</h1>
+                                                <p class="roboto text-secondary"><b>Prompt: </b>Generate a single, direct blog seo description about {{updatedPage.title}}. Aim for a professional and creative tone.</p>
+                                                <div style="height: 46px;" @click="geminiRun('description',`Generate a single, direct blog seo description about ${updatedPage.title}. Aim for a professional and creative tone.`)" class="bg-gradient sans text-light fs-5 px-3 py-2 rounded ls-1 w-100 d-flex justify-content-center align-items-center" role="button">
+                                                    <div v-if="spinner" v-cloak class="spinner-line"></div>
+                                                    <span v-else >Generate</span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <!-- Keywords -->
+                                    <div class="input-group">
+                                        <div class="input-group-text"><i class="bi bi-key"></i></div>
+                                        <input v-model="updatedPage.keywords" type="text" placeholder="Keywords" class="form-control fs-small">
+                                        
+                                        <span title="Gemini AI" role="button" class="input-group-text" data-bs-toggle="modal" data-bs-target="#keywordsAiModel">
+                                            <i class="bi bi-stars text-primary-200"></i>
+                                        </span>
+                                        <!-- Keywords Ai Modal -->
+                                        <div class="modal fade" id="keywordsAiModel" tabindex="-1">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content p-3 text-center d-flex flex-column gap-3 align-items-center justify-content-center">
+                                                <i class="bi bi-stars fs-2 text-primary-100"></i>
+                                                <h1 class="bungee text-primary-200 fs-2">Gemini AI</h1>
+                                                <p class="roboto text-secondary"><b>Prompt: </b>Generate a single, direct blog seo keywords about {{updatedPage.title}}. Aim for a professional and creative tone.</p>
+                                                <div style="height: 46px;" @click="geminiRun('keywords',`Generate a list of keywords (must be separated by coma) related to this blog title '${updatedPage.title}'.`)" class="bg-gradient sans text-light fs-5 px-3 py-2 rounded ls-1 w-100 d-flex justify-content-center align-items-center" role="button">
+                                                    <div v-if="spinner" v-cloak class="spinner-line"></div>
+                                                    <span v-else >Generate</span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 @click="getUpdatedPayload()" class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                <span class="sans fw-bold">2. Updating the article</span>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#pageEditor">
+                            <div class="p-2">
+                                <aside class="d-flex flex-column gap-2">
+                                    <!-- <div class="input-group input-group-sm">
+                                        <div class="input-group-text d-flex align-items-center gap-2 px-3 px-md-2"><i class="bi bi-stars text-primary-200 fs-5"></i> <span class="d-none d-md-block roboto">Gemini AI</span></div>
+                                        <div class="form-control d-flex align-items-center gap-2 roboto">
+                                            <span data-bs-toggle="modal" data-bs-target="#generateArticle" role="button" class="px-2 py-1 border d-flex align-items-center gap-1 rounded fs-small"><span class="material-symbols-outlined text-primary-200 fs-6">edit_document</span><span class="d-none d-md-block">Rewrite article</span></span>
+                                            <span class="px-2 py-1 border d-flex align-items-center gap-1 rounded fs-small"><span class="material-symbols-outlined text-primary-200 fs-6">spellcheck</span><span class="d-none d-md-block">Spellcheck article</span></span>
+                                            <span data-bs-toggle="modal" data-bs-target="#summariseArticle" role="button" class="px-2 py-1 border d-flex align-items-center gap-1 rounded fs-small"><span class="material-symbols-outlined text-primary-200 fs-6">short_text</span><span class="d-none d-md-block">Summarise article</span></span>
+                                            <span class="px-2 py-1 border d-flex align-items-center gap-1 rounded fs-small"><span class="material-symbols-outlined text-primary-200 fs-6">translate</span><span class="d-none d-md-block">Translator</span></span>
+                                        </div>
+                                    </div> -->
+                                    <div id="editor-container"></div>
+                                    
+                                    <!-- generateArticle Ai Modal -->
+                                    <!-- <div class="modal modal-lg fade" id="generateArticle" tabindex="-1">
+                                        <div class="modal-dialog modal-dialog-scrollable">
+                                            <div class="modal-content p-3 text-center d-flex flex-column gap-3 align-items-center justify-content-center">
+                                                <i class="bi bi-stars fs-2 text-primary-100"></i>
+                                                <h1 class="bungee text-primary-200 fs-2">Generate Article with Gemini AI</h1>
+                                                <pre v-if="updatedPage.generateArticle != ''" class="w-100 roboto text-secondary fs-small text-start">
+                                                    {{updatedPage.generateArticle}}
+                                                </pre>
+                                                <p v-else class="roboto text-secondary"><b>Prompt: </b><span>Generate an article of 200 words about {{updatedPage.title}}. Aim for professional and creative tone.</span></p>
+                                                
+                                                <div style="height: 46px;" @click="geminiRun('generateArticle',`Generate an article of 200 words about ${updatedPage.title}. Aim for professional and creative tone.`)" class="bg-gradient sans text-light fs-5 px-3 py-2 rounded ls-1 w-100 d-flex justify-content-center align-items-center" role="button">
+                                                    <div v-if="spinner" v-cloak class="spinner-line"></div>
+                                                    <span v-else >Generate</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- spellcheckArticle Ai Modal -->
+                                    <!-- <div class="modal modal-lg fade" id="spellcheckArticle" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content p-3 text-center d-flex flex-column gap-3 align-items-center justify-content-center">
+                                                <i class="bi bi-stars fs-2 text-primary-100"></i>
+                                                <h1 class="bungee text-primary-200 fs-2">Generate Article with Gemini AI</h1>
+                                                <p class="roboto text-secondary"><b>Prompt: </b>Generate a single, direct blog seo description about {{updatedPage.title}}. Aim for a professional and creative tone.</p>
+                                                <div style="height: 46px;" @click="geminiRun('spellcheckArticle',`Generate a single, direct blog seo description about ${updatedPage.title}. Aim for a professional and creative tone.`)" class="bg-gradient sans text-light fs-5 px-3 py-2 rounded ls-1 w-100 d-flex justify-content-center align-items-center" role="button">
+                                                    <div v-if="spinner" v-cloak class="spinner-line"></div>
+                                                    <span v-else >Generate</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- summariseArticle Ai Modal -->
+                                    <!-- <div class="modal modal-lg fade" id="summariseArticle" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content p-3 text-center d-flex flex-column gap-3 align-items-center justify-content-center">
+                                                <i class="bi bi-stars fs-2 text-primary-100"></i>
+                                                <h1 class="bungee text-primary-200 fs-2">Generate Article with Gemini AI</h1>
+                                                <p class="roboto text-secondary"><b>Prompt: </b>Summarise this blog in 3 lines only.</p>
+                                                <div style="height: 46px;" @click="geminiRun('summariseArticle',`Summarise this blog in 3 lines only: ${updatedPage.article}`)" class="bg-gradient sans text-light fs-5 px-3 py-2 rounded ls-1 w-100 d-flex justify-content-center align-items-center" role="button">
+                                                    <div v-if="spinner" v-cloak class="spinner-line"></div>
+                                                    <span v-else >Generate</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- translateArticle Ai Modal -->
+                                    <!-- <div class="modal modal-lg fade" id="translateArticle" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content p-3 text-center d-flex flex-column gap-3 align-items-center justify-content-center">
+                                                <i class="bi bi-stars fs-2 text-primary-100"></i>
+                                                <h1 class="bungee text-primary-200 fs-2">Generate Article with Gemini AI</h1>
+                                                <p class="roboto text-secondary"><b>Prompt: </b>Generate a single, direct blog seo description about {{updatedPage.title}}. Aim for a professional and creative tone.</p>
+                                                <div style="height: 46px;" @click="geminiRun('translateArticle',`Generate a single, direct blog seo description about ${updatedPage.title}. Aim for a professional and creative tone.`)" class="bg-gradient sans text-light fs-5 px-3 py-2 rounded ls-1 w-100 d-flex justify-content-center align-items-center" role="button">
+                                                    <div v-if="spinner" v-cloak class="spinner-line"></div>
+                                                    <span v-else >Generate</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 @click="getUpdatedPayload()" class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                <span class="sans fw-bold">3. Preview & Publish</span>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#pageEditor">
+                            <div class="p-2">
+                                <aside>
+                                    <section class="d-flex flex-column gap-3">
+                                        <aside class="p-2 border rounded" style="min-height: 241.6px;">
+                                            <div id="editor-output"></div>
+                                        </aside>
+                                        
+                                        <!-- <small v-if="!isValidTitle()" class="fs-x-small text-danger sans">This title already exist!</small> -->
+                                        <small v-if="!utilities.isValidPayload(updatedPage,['folder','badge','title','keywords','description','media']).status" class="fs-x-small text-danger sans">{{utilities.isValidPayload(updatedPage,['folder','badge','title','keywords','description','media']).message}}</small>
+                                        <button v-else @click="updatePage" class="btn btn-sm btn-outline-dark d-flex gap-2 align-items-center" style="width: fit-content !important;" :disabled="!utilities.areDifferent(updatedPage,initialPage) || spinner || !utilities.isValidPayload(updatedPage,['folder','badge','title','keywords','description','media']).status">
+                                            <span class="m-0">Update page</span>
+                                        </button>
+                                    </section>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spinner-line" v-if="spinner"></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jurdi - Editor</title>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="./css/awn.min.css"></link>
+
+    <!-- JS -->
+    <script src="../js/packages/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+    </script>
+
+</head>
+
+<body id="root" class="bg-grid">
+    
+    <section v-if="!store.isLogedIn" class="w-100 h-100 bg-grid d-flex justify-content-center align-items-center position-fixed z-3 top-0 start-0">
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-6 col-xl-4">
+                    
+                    <aside class="p-3 bg-light d-flex flex-column gap-3 shadow-sm rounded align-items-center text-center">
+                        <img src="/assets/logo-3.png" alt="logo" width="75" class="object-fit-cover skeleton my-4">
+                        <!-- <div class="">
+                            <h4 class="sans fs-4">Jurdi&Co</h4>
+                        </div> -->
+                        <div class="w-100 d-flex flex-column gap-2">
+                            <input v-model="store.username" @keyup.enter="utilities.focus('password')" type="text" placeholder="username" class="w-100 form-control">
+                            <input v-model="store.password" @keyup.enter="login" id="password" type="password" placeholder="password" class="w-100 form-control">
+                        </div>
+                        <button @click="login" :disabled="spinner" class="w-100 btn btn-sm btn-primary">
+                            Login
+                        </button>
+                        
+                        <p class="text-secondary fs-x-small sans text-lowercase pt-1">Editor - Version {{store.version}}</p>
+                        
+                    </aside>
+                    <div v-if="spinner" v-cloak class="spinner-line"></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <header v-if="store.isLogedIn" class="w-100 py-2 px-3 shadow-sm bg-light d-flex align-items-center justify-content-between">
+        <router-link to="/"><h6 class="sans text-primary-200 d-flex align-items-center gap-2">EDITOR</h6></router-link>
+        <div class="d-none d-lg-flex gap-2 align-items-center">
+            <router-link to="/">Pages</router-link>
+            <router-link :to="{name:'contactEditor'}">Contact</router-link>
+            <!-- <router-link :to="{name:'reels'}" class="btn-retro">Reels</router-link> -->
+            <!-- <router-link :to="{name:'links'}" class="btn-retro">Analytics</router-link> -->
+        </div>
+        <i type="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-block d-lg-none bi bi-three-dots-vertical fs-5 text-secondary"></i>
+        <ul class="dropdown-menu">
+            <li class="dropdown-item"><router-link to="/">Pages</router-link></li>
+            <li class="dropdown-item"><router-link :to="{name:'contactEditor'}">Contact</router-link></li>
+            <!-- <li class="dropdown-item"><router-link :to="{name:'links'}" class="btn-retro">Links</router-link></li>
+            <li class="dropdown-item"><router-link :to="{name:'reels'}" class="btn-retro">Reels</router-link></li> -->
+        </ul>
+    </header>
+    <main v-if="store.isLogedIn" class="my-3 my-lg-4">
+        <router-view></router-view>
+    </main>
+    <!-- JAVASCRIPT -->
+    <script src="../js/packages/bootstrap.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script type="module" src="./js/index.js"></script>
+    <script src="./js/packages/awn.min.js"></script>
+    <!-- <script type="module" src="../js/app.js"></script> -->
+
+</body>
+
+</html>

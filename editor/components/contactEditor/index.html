@@ -1,0 +1,26 @@
+<section class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive bg-light p-3 rounded shadow-sm">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">CONTACT KEY</th>
+                            <th scope="col">CONTACT VALUE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(value,key) in store.contact">
+                            <td style="min-width: 200px;">{{key}}</td>
+                            <!-- <td>{{value}}</td> -->
+                            <td style="min-width: 400px;"><input v-model="store.nextContact[key]" type="text" class="form-control"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <button @click="updateContact()" class="btn btn-sm btn-outline-dark px-3" :disabled="!utilities.areDifferent(store.nextContact,store.contact) || spinner">Update Contact</button>
+            </div>
+            <div class="spinner-line" v-if="spinner"></div>
+        </div>
+    </div>
+</section>

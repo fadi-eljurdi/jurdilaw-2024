@@ -1,0 +1,109 @@
+<section class="container">
+    <div class="row g-3">
+        <div class="col-12">
+            <aside class="table-responsive p-3 shadow-sm bg-light rounded">
+                <table class="table caption-top table-hover">
+                    <caption class="bungee text-blockquote-dev mb-3">Manage your Reels</caption>
+                    <thead>
+                        <tr class="sans">
+                            <th scope="col"></th>
+                            <th scope="col">Timestamp</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Thumbnail </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider roboto fs-small">
+                        <tr v-if="loadingReels">
+                            <th scope="row"></th>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                        </tr>
+                        <tr v-else v-for="node in store.reels" :key="node">
+                            <th scope="row">
+                                <i class="bi bi-three-dots" data-bs-toggle="dropdown" role="button"></i>
+                                <ul class="dropdown-menu fs-small">
+                                    <li class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#reelsModalRemove" @click="removedReel = node">Remove record</li>
+                                </ul>
+                            </th>
+                            <td>{{utilities.timo(node.timestamp)}}</td>
+                            <td>{{node.title}}</td>
+                            <td>
+                                
+                                <!-- <img :src="node.thumbnails" alt="thumbnail" class="object-fit-contain"> -->
+                                <div class="ratio ratio-1x1">
+                                    <img :src="node.thumbnail" alt="thumbnail" class="object-fit-contain">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr v-if="spinner">
+                            <th scope="row"></th>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </div>
+        <div class="col-12">
+            <div class="d-flex align-items-center gap-1">
+                <button class="btn-retro" data-bs-toggle="modal" data-bs-target="#reelsModal">
+                    Add new Reel
+                </button>
+            </div>
+
+            <!-- Add New Reel Modal -->
+            <div class="modal fade" id="reelsModal">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-6">Add new Reel</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="d-flex flex-column gap-2">
+                                <input type="text" v-model="addedReel.title" required placeholder="Reel's title" class="form-control">
+                                <!-- Images -->
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-image"></i>
+                                    </span>
+                                    <div class="form-control text-secondary d-flex gap-3 align-items-center justify-content-between" @click="selectImages" aria-label="add images" role="button" title="add images" >
+                                        <span class="">Thumbnail</span>
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <img v-for="node in addedReel.thumbnail" :src="node.src64" :alt="node.alt" width="40" height="40" class="object-fit-contain rounded">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button :disabled="!utilities.isValidPayload(addedReel, ['title', 'thumbnail']).status" @click="createNewReel" type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Remove Reel Modal -->
+            <div class="modal fade" id="reelsModalRemove">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-6">Remove Reel</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure bedak tshel this record: <b>{{removedReel.title}}</b></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal" @click="removeReel">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -240,7 +240,7 @@ function extractArticle(htmlString) {
     const article = soup.querySelector("article");
 
     if (article) {
-        const firstDiv = article.querySelector("div");
+        const firstDiv = article.querySelector("aside");
         return firstDiv ? firstDiv.innerHTML : null;
     }
 
@@ -253,9 +253,72 @@ function fixClosingTags(htmlString) {
     return htmlString.replace(regex, "</$1>");
 }
 
+function diffProperties(obj1, obj2) {
+    // console.log('obj1');
+    // console.log(obj1);
+    // console.log('obj 2');
+    // console.log(obj2);
+    const result = {};
+
+    for (const key in obj1) {
+        // Check if key exists in both objects and values differ
+        if (obj2.hasOwnProperty(key) && obj1[key] !== obj2[key]) {
+            result[key] = obj1[key];
+        }
+    }
+
+    return result;
+}
+
+function areDifferent(obj1, obj2) {
+    // Check if objects have the same number of keys (length)
+    // if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+    //     return true;
+    // }
+
+    // Loop through keys of obj1
+    for (const key in obj1) {
+        // Check if key doesn't exist in obj2 or values differ
+        if (!obj2.hasOwnProperty(key) || obj1[key] !== obj2[key]) {
+            return true;
+        }
+    }
+
+    // If all keys and values match, objects are the same
+    return false;
+}
+
+
+// function diffProperties(obj1, obj2) {
+//     const result = {};
+
+//     function compareObjects(objA, objB) {
+//         for (const key in objA) {
+//             if (!Object.prototype.hasOwnProperty.call(objB, key)) {
+//                 result[key] = objA[key];
+//             } else if (typeof objA[key] === 'object' && typeof objB[key] === 'object') {
+//                 compareObjects(objA[key], objB[key]); // Recursive call for nested objects
+//             } else if (objA[key] !== objB[key]) {
+//                 result[key] = objA[key];
+//             }
+//         }
+
+//         for (const key in objB) {
+//             if (!Object.prototype.hasOwnProperty.call(objA, key)) {
+//                 result[key] = objB[key];
+//             }
+//         }
+//     }
+
+//     compareObjects(obj1, obj2);
+//     return result;
+// }
+
 
 
 export default {
+    areDifferent,
+    diffProperties,
     fixClosingTags,
     extractArticle,
     removeEmptyProperties,

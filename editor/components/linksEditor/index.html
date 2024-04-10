@@ -1,0 +1,117 @@
+<section class="container">
+    <div class="row g-3">
+        <div class="col-12">
+            <aside class="table-responsive p-3 shadow-sm bg-light rounded">
+                <table class="table caption-top table-hover">
+                    <caption class="bungee text-blockquote-dev mb-3">Manage your links</caption>
+                    <thead>
+                        <tr class="sans">
+                            <th scope="col"></th>
+                            <th scope="col">Group</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Url</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider roboto fs-small">
+                        <tr v-if="loadingLinks">
+                            <th scope="row"></th>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                        </tr>
+                        <tr v-else v-for="node in store.links" :key="node">
+                            <th scope="row">
+                                <i class="bi bi-three-dots" data-bs-toggle="dropdown" role="button"></i>
+                                <ul class="dropdown-menu fs-small">
+                                    <li class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#linkModalUpdate" @click="updatedLink = node">Update record</li>
+                                    <li class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#linkModalRemove" @click="removedLink = node">Remove record</li>
+                                </ul>
+                            </th>
+                            <td>{{node.group}}</td>
+                            <td>{{node.title}}</td>
+                            <td>{{node.url}}</td>
+                        </tr>
+                        <tr v-if="spinner">
+                            <th scope="row"></th>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                            <td><div class="w-100 p-2 rounded-pill skeleton"></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </div>
+        <div class="col-12">
+            <div class="d-flex align-items-center gap-1">
+                <button class="btn-retro" data-bs-toggle="modal" data-bs-target="#linkModal">
+                    Add new link
+                </button>
+            </div>
+
+            <!-- Add New Link Modal -->
+            <div class="modal fade" id="linkModal">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-6">Add new link</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="d-flex flex-column gap-2">
+                                <input @keyup.enter="utilities.focus('linkTitle')" type="text" v-model="addedLink.group" required placeholder="Link group" class="form-control">
+                                <input @keyup.enter="utilities.focus('linkUrl')" id="linkTitle" type="text" v-model="addedLink.title" required placeholder="Link title" class="form-control">
+                                <input id="linkUrl" type="url" v-model="addedLink.url" required placeholder="link url" class="form-control">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button :disabled="!utilities.isValidPayload(addedLink, ['group', 'title', 'url']).status" @click="createNewLink" type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- update Link Modal -->
+            <div class="modal fade" id="linkModalUpdate">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-6">Update link</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="d-flex flex-column gap-2">
+                                <input @keyup.enter="utilities.focus('linkTitleUpdate')" type="text" v-model="updatedLink.group" type="text" v-model="updatedLink.group"  required placeholder="Link group" class="form-control">
+                                <input @keyup.enter="utilities.focus('linkUrlUpdate')" id="linkTitleUpdate" type="text" v-model="updatedLink.title" type="text" v-model="updatedLink.title" required placeholder="Link title" class="form-control">
+                                <input id="linkUrlUpdate" type="url" v-model="updatedLink.url" type="url" v-model="updatedLink.url"  required placeholder="link url" class="form-control">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button @click="updateLink" type="button" data-bs-dismiss="modal" class="btn btn-sm btn-success">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Remove Link Modal -->
+            <div class="modal fade" id="linkModalRemove">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-6">Remove link</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure bedak tshel this record: <b>{{removedLink.title}}</b></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal" @click="removeLink">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
