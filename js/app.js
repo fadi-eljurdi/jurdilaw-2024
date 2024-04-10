@@ -7,7 +7,6 @@ import utilities from './utilities.js'
 
 import Blog from './classes/Blog.js'
 import Service from './classes/Service.js'
-import Link from './classes/Link.js'
 import Contact from './classes/Contact.js'
 const app = Vue.createApp({
     data() {
@@ -43,12 +42,12 @@ const app = Vue.createApp({
         async getProfile() {
             try {
                 this.spinner = true
-                fetch(this.store.api + '?getProfile=1').then(res => res.json()).then(res => {
+                fetch(this.store.api + '?getProfile').then(res => res.json()).then(res => {
                     console.log(res);
                     
-                    this.store.links = res.links.map(node => new Link(node))
-                    this.store.blogs = res.blogs.map(node => new Blog(node))
-                    this.store.services = res.services.map(node => new Service(node))
+                    // this.store.links = res.links.map(node => new Link(node))
+                    this.store.blogs = res.data.blogs.map(node => new Blog(node))
+                    this.store.services = res.data.services.map(node => new Service(node))
 
                     this.store.contact = new Contact(res.contact)     
                     console.log(this.store.services);               
