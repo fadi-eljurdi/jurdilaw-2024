@@ -38,7 +38,7 @@
 
 .spinner-line {
     --uib-size: 100%;
-    --uib-color: var(--j-dark);
+    --uib-color: grey;
     --uib-speed: 1s;
     --uib-stroke: 2px;
     --uib-bg-opacity: .1;
