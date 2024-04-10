@@ -49,7 +49,7 @@ const app = Vue.createApp({
                     this.store.blogs = res.data.blogs.map(node => new Blog(node))
                     this.store.services = res.data.services.map(node => new Service(node))
 
-                    this.store.contact = new Contact(res.contact)     
+                    this.store.contact = new Contact(res.data.contact)     
                     console.log(this.store.services);               
                     this.spinner = false
                 })
