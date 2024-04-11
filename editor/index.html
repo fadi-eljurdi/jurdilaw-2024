@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jurdi - Editor</title>
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -13,6 +12,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="./css/awn.min.css"></link>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <!-- JS -->
     <script src="../js/packages/vue.min.js"></script>
@@ -29,8 +29,10 @@
 
 <body id="root" class="bg-grid">
     
+    <section v-if="store.devmode" class="w-100 h-100 bg-grid d-flex justify-content-center align-items-center position-fixed top-0 start-0" style="z-index: 999;">
+        <p>Editor is updating... please try again later</p>
+    </section>
     <section v-if="!store.isLogedIn" class="w-100 h-100 bg-grid d-flex justify-content-center align-items-center position-fixed z-3 top-0 start-0">
-
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-6 col-xl-4">
@@ -55,7 +57,6 @@
                 </div>
             </div>
         </div>
-
     </section>
     <header v-if="store.isLogedIn" class="w-100 py-2 px-3 shadow-sm bg-light d-flex align-items-center justify-content-between">
         <router-link to="/"><h6 class="sans text-primary-200 d-flex align-items-center gap-2">EDITOR</h6></router-link>
