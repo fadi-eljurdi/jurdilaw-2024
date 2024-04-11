@@ -42,39 +42,22 @@
 
 <body id="app" class="bg-blocks">
     
-    <section v-if="spinner" class="spinner-container">
-        <div class="spinner"></div>
-    </section>
-    <!-- <spinner v-if="spinner"></spinner> -->
     <pagination folder="services">Corporate & Commercial</pagination>
     <main class="py-3">
         <section class="container">
             <div class="row g-3">
                 <div class="col-12 col-lg-8">
-                    <article class="shadow-sm bg-glass p-2 rounded d-flex flex-column gap-3">
+                    <article class="article-container">
                         <blog-header aria-label="blog-header"></blog-header>
                         <blog-media media="https://lh3.googleusercontent.com/d/1DV02N54KcLDdtupcbB87oZxvyBR4t2XV"></blog-media>
-                        <section>
-                            <p class="font-normal text-j-dark text-fade fs-x-small fw-bold"><span class="px-2 py-1 bg-j-primary rounded text-light ls-1 me-2">SERVICE</span><time>{{utilities.timo('Mon, 08 Apr 2024 03:00:59 GMT')}}</time></p>
-                            <h1 class="my-2 font-title text-j-dark">Corporate & Commercial</h1>
-                            <aside class="font-normal text-j-dark" v-show="!translated" id="original">
+                        <section class="article-body">
+                            <p class="article-p"><span class="blog-badge">SERVICE</span><time>{{utilities.timo('Mon, 08 Apr 2024 03:00:59 GMT')}}</time></p>
+                            <h1 class="article-h1">Corporate & Commercial</h1>
+                            <aside class="article-aside">
                                 <p>We advise and represent in court foreign businesses in relation to their corporate and commercial affairs in Lebanon, regardless of the sector and line of business. Our team is ready to bring adept solutions to our clients in a timely manner. From advising on shareholders' agreements, setting up companies, to initiating and assisting our clients with the legal affairs management of complex joint ventures.</p>
                             </aside>
                         </section>
-                        <section v-show="translated" id="translated"></section>
-                        <hr class="text-heading">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center fs-small pop text-normal">
-                                <span v-show="!translated" class="point text-decoration-underline"
-                                    @click="translate">see translation</span>
-                                <span v-show="translated" class="point text-decoration-underline"
-                                    @click="translated = !translated">see original</span>
-                            </div>
-                            <div class="d-flex align-items-center gap-3 point">
-                                <i title="share this page" class="bi bi-share-fill text-normal"
-                                    @click="utilities.shareBy(`Corporate & Commercial`,`https://jurdilaw.com/services/corporate-commercial.html`)"></i>
-                            </div>
-                        </div>
+                        <blog-footer></blog-footer>
                     </article>
                 </div>
                 <div class="col-12 col-lg-4">

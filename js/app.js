@@ -19,37 +19,17 @@ const app = Vue.createApp({
     },
     methods: {
 
-        font() {
-            if (document.querySelector('html').lang == 'ar') {
-                //the page is already in arabic
-
-                var translated = document.querySelector('#translated')
-                translated.setAttribute('dir', 'ltr')
-                translated.classList.add('font-title')
-            } else {
-                // the page is in english
-
-                var translated = document.querySelector('#translated')
-                translated.setAttribute('dir', 'rtl')
-                translated.classList.add('font-arabic')
-            }
-        },
-        dir() {
-            if (document.querySelector('html').lang == 'ar') return 'rtl'
-            else return 'ltr'
-
-        },
         async getProfile() {
             try {
                 this.store.spinner = true
                 fetch(this.store.api + '?getProfile').then(res => res.json()).then(res => {
                     console.log(res);
-                    
+
                     // this.store.links = res.links.map(node => new Link(node))
                     this.store.blogs = res.data.blogs.filter(node => node.badge != 'DEMO').map(node => new Blog(node))
                     this.store.services = res.data.services.filter(node => node.badge != 'DEMO').map(node => new Service(node))
-                    this.store.contact = new Contact(res.data.contact)     
-                    console.log(this.store.services);               
+                    this.store.contact = new Contact(res.data.contact)
+                    console.log(this.store.services);
                     this.store.spinner = false
                 })
 
@@ -58,44 +38,6 @@ const app = Vue.createApp({
                 console.log(err);
                 this.store.spinner = false
             }
-
-        },
-        async translate() {
-
-            this.spinner = true
-            const original = document.querySelector('#original');
-            // console.log(original.innerHTML);
-            var source = () => {
-                if (this.dir() == 'rtl') return 'ar'
-                return 'en'
-            }
-            var target = () => {
-                if (this.dir() == 'rtl') return 'en'
-                return 'ar'
-            }
-            var api = this.store.api
-            api += `?translate=1`
-            var res = await fetch(api, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "text/plain"
-                },
-                body: JSON.stringify({
-                    text: original.innerHTML,
-                    source: source(),
-                    target: target()
-
-                })
-            })
-
-            res = await res.json()
-            console.log(res);
-            this.font()
-            translated.innerHTML = (utilities.fixClosingTags(res)).replaceAll(' & nbsp؛ ', ' ')
-            this.translated = true
-
-            this.spinner = false
-
 
         },
     },
@@ -115,7 +57,7 @@ const app = Vue.createApp({
                 document.getElementById('original').classList.add('font-title')
             }
         }
-        
+
     }
 })
 
@@ -153,6 +95,9 @@ app.component('pagination', pagination)
 
 import blogMedia from './components/blog-media/index.js'
 app.component('blog-media', blogMedia)
+
+import blogFooter from './components/blog-footer/index.js'
+app.component('blog-footer', blogFooter)
 
 import blogHeader from './components/blog-header/index.js'
 app.component('blog-header', blogHeader)

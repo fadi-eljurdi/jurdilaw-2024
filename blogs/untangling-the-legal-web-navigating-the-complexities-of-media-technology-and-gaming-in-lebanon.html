@@ -42,39 +42,22 @@
 
 <body id="app" class="bg-blocks">
     
-    <section v-if="spinner" class="spinner-container">
-        <div class="spinner"></div>
-    </section>
-    <!-- <spinner v-if="spinner"></spinner> -->
     <pagination folder="blogs">Untangling the Legal Web: Navigating the Complexities of Media, Technology, and Gaming in Lebanon</pagination>
     <main class="py-3">
         <section class="container">
             <div class="row g-3">
                 <div class="col-12 col-lg-8">
-                    <article class="shadow-sm bg-glass p-2 rounded d-flex flex-column gap-3">
+                    <article class="article-container">
                         <blog-header aria-label="blog-header"></blog-header>
                         <blog-media media="https://lh3.googleusercontent.com/d/1rAt0O9vgdlrdGkpscnVWDAUPfOsPiQKE"></blog-media>
-                        <section>
-                            <p class="font-normal text-j-dark text-fade fs-x-small fw-bold"><span class="px-2 py-1 bg-j-primary rounded text-light ls-1 me-2">BLOG</span><time>{{utilities.timo('Tue, 09 Apr 2024 18:54:15 GMT')}}</time></p>
-                            <h1 class="my-2 font-title text-j-dark">Untangling the Legal Web: Navigating the Complexities of Media, Technology, and Gaming in Lebanon</h1>
-                            <aside class="font-normal text-j-dark" v-show="!translated" id="original">
+                        <section class="article-body">
+                            <p class="article-p"><span class="blog-badge">BLOG</span><time>{{utilities.timo('Tue, 09 Apr 2024 18:54:15 GMT')}}</time></p>
+                            <h1 class="article-h1">Untangling the Legal Web: Navigating the Complexities of Media, Technology, and Gaming in Lebanon</h1>
+                            <aside class="article-aside">
                                 <p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">Lebanon's media, technology, and gaming industries are experiencing rapid growth, but they face unique legal challenges. This article explores the complexities within these sectors and highlights the need for specialized legal services to address these issues effectively.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">Lebanon's legal framework provides the foundation for businesses in the media, technology, and gaming sectors. However, the fast pace of technological advancements often outpaces legislation, creating disparities between legal requirements and industry practices. This results in uncertainties, potential legal pitfalls, and compliance risks that require expert legal guidance.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">Intellectual property rights are crucial for protecting creative works and brand identities in the media and technology sectors. However, enforcing and protecting intellectual property rights in the digital age can be challenging. Additionally, data privacy concerns arise from the collection, storage, and utilization of personal data. Complying with data protection laws and implementing robust security measures require specialized legal expertise.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">The gaming industry's rapid growth brings both opportunities and challenges. Compliance with gaming regulations, including licensing requirements, age restrictions, and gambling laws, is essential for developers, publishers, and e-sports organizations. Intellectual property protection is also critical in the gaming industry to safeguard original concepts and prevent unauthorized use or infringement.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">To address the legal complexities in Lebanon's media, technology, and gaming industries, specialized legal services are indispensable. Law firms with expertise in these areas offer tailored solutions to assist clients in navigating the intricacies of the legal landscape. They provide comprehensive legal support, including contract negotiation, intellectual property protection, regulatory compliance, dispute resolution, and legal counseling.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">Bridging the gap between industry practices and legal regulations is crucial for the smooth functioning and growth of Lebanon's media, technology, and gaming sectors. Collaboration between industry stakeholders, legal professionals, and policymakers can lead to the development of adaptive and future-proof legal frameworks. Promoting awareness and education about legal obligations, intellectual property rights, and data privacy will empower businesses and individuals to navigate the legal landscape effectively.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">Lebanon's media, technology, and gaming industries face unique legal challenges that require specialized legal services. By addressing issues related to intellectual property, data privacy, regulatory compliance, and contract management, law firms with expertise in these sectors can support businesses and individuals in achieving legal compliance, protecting their rights, and driving innovation. Resolving the complex legal landscape requires collaboration, adaptation, and a deep understanding of the industries involved. With the support of specialized legal services, Lebanon's media, technology, and gaming sectors can thrive in the rapidly evolving digital era.</span></p><p><br></p>
                             </aside>
                         </section>
-                        <section v-show="translated" id="translated"></section>
-                        <hr class="text-heading">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center fs-small pop text-normal">
-                                <span v-show="!translated" class="point text-decoration-underline"
-                                    @click="translate">see translation</span>
-                                <span v-show="translated" class="point text-decoration-underline"
-                                    @click="translated = !translated">see original</span>
-                            </div>
-                            <div class="d-flex align-items-center gap-3 point">
-                                <i title="share this page" class="bi bi-share-fill text-normal"
-                                    @click="utilities.shareBy(`Untangling the Legal Web: Navigating the Complexities of Media, Technology, and Gaming in Lebanon`,`https://jurdilaw.com/blogs/untangling-the-legal-web-navigating-the-complexities-of-media-technology-and-gaming-in-lebanon.html`)"></i>
-                            </div>
-                        </div>
+                        <blog-footer></blog-footer>
                     </article>
                 </div>
                 <div class="col-12 col-lg-4">

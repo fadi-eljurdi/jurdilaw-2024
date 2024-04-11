@@ -1,12 +1,12 @@
 import Page from './classes/Page.js'
 export default {
-    version: '1.1',
+    version: '1.2',
     OAuthUser: false,
     username: '',
     password: '',
     isLogedIn: false,
     geminiToken: '',
-    api: 'https://script.google.com/macros/s/AKfycbx1w87noC2uRzUKV3Bj80e4UaQxtVZ6ZtSwyiciQ58VLiQW6I-G86KdxKgr6ZVQgnRf/exec',
+    api: 'https://script.google.com/macros/s/AKfycbwFA7WaesTWB7A-HZsh2v4hcYilIPx3oFPZhXdLgB5wRbFsjck9zDpKGF8R6ZaBhCCe/exec',
 
     spinner: false,
     services: [],

@@ -42,39 +42,22 @@
 
 <body id="app" class="bg-blocks">
     
-    <section v-if="spinner" class="spinner-container">
-        <div class="spinner"></div>
-    </section>
-    <!-- <spinner v-if="spinner"></spinner> -->
     <pagination folder="blogs">Dolphin Emulator: Nintendo Takes on Copyright Infringement</pagination>
     <main class="py-3">
         <section class="container">
             <div class="row g-3">
                 <div class="col-12 col-lg-8">
-                    <article class="shadow-sm bg-glass p-2 rounded d-flex flex-column gap-3">
+                    <article class="article-container">
                         <blog-header aria-label="blog-header"></blog-header>
                         <blog-media media="https://lh3.googleusercontent.com/d/1JcAqrQuMYcuI-WlC6da7LRJ2EE01Vsu0"></blog-media>
-                        <section>
-                            <p class="font-normal text-j-dark text-fade fs-x-small fw-bold"><span class="px-2 py-1 bg-j-primary rounded text-light ls-1 me-2">BLOG</span><time>{{utilities.timo('Tue, 09 Apr 2024 19:07:03 GMT')}}</time></p>
-                            <h1 class="my-2 font-title text-j-dark">Dolphin Emulator: Nintendo Takes on Copyright Infringement</h1>
-                            <aside class="font-normal text-j-dark" v-show="!translated" id="original">
+                        <section class="article-body">
+                            <p class="article-p"><span class="blog-header">BLOG</span><time>{{utilities.timo('Tue, 09 Apr 2024 19:07:03 GMT')}}</time></p>
+                            <h1 class="article-h1">Dolphin Emulator: Nintendo Takes on Copyright Infringement</h1>
+                            <aside class="article-aside">
                                 <p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">Nintendo has issued a DMCA takedown notice to Valve regarding the Dolphin emulator, which allows users to play GameCube and Wii games. Dolphin has been in development for almost 20 years and had plans to release the emulator on Steam. However, Dolphin's developers have announced that the Steam release is now "indefinitely postponed."</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">The takedown notice claims that Dolphin violates Nintendo's intellectual property rights under the DMCA's Anti-Circumvention and Anti-Trafficking provisions. According to DMCA regulations, platforms like Steam must remove content upon receiving a takedown request. Dolphin's Steam page has been taken down and redirects to the Steam store homepage.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">In a statement on the Dolphin website, the developers express disappointment and reveal that Valve informed them of Nintendo's cease and desist notice citing the DMCA. Dolphin has been removed from Steam while the matter is being resolved, and the developers are currently exploring their options and will provide a more detailed response soon.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">Emulation exists in a legal gray area, and the outcome of a potential lawsuit against Dolphin is uncertain. However, such a lawsuit could set a precedent with wide-ranging consequences for emulation as a whole.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">Despite the setback on Steam, Dolphin can still be downloaded from its own website. Other emulation software, like RetroArch, remains available on Steam. The interest in accessing emulation software through Steam has grown, especially due to the popularity of Valve's PC handheld, the Steam Deck. Last year, Valve quickly replaced a Steam Deck trailer that featured a Nintendo Switch emulator in a user's Steam library.</span></p><p><br></p><p><span style="background-color: rgba(255, 255, 255, 0.2); color: rgb(20, 33, 61);">The clash between Nintendo and Dolphin highlights the ongoing debate surrounding emulation and copyright, and it raises important questions about the future of emulation in the gaming community. Further updates on this matter are expected as the situation unfolds.</span></p><p><br></p>
                             </aside>
                         </section>
-                        <section v-show="translated" id="translated"></section>
-                        <hr class="text-heading">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center fs-small pop text-normal">
-                                <span v-show="!translated" class="point text-decoration-underline"
-                                    @click="translate">see translation</span>
-                                <span v-show="translated" class="point text-decoration-underline"
-                                    @click="translated = !translated">see original</span>
-                            </div>
-                            <div class="d-flex align-items-center gap-3 point">
-                                <i title="share this page" class="bi bi-share-fill text-normal"
-                                    @click="utilities.shareBy(`Dolphin Emulator: Nintendo Takes on Copyright Infringement`,`https://jurdilaw.com/blogs/dolphin-emulator-nintendo-takes-on-copyright-infringement.html`)"></i>
-                            </div>
-                        </div>
+                        <blog-footer></blog-footer>
                     </article>
                 </div>
                 <div class="col-12 col-lg-4">

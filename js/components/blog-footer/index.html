@@ -1,16 +1,25 @@
-<div class="d-flex justify-content-end align-items-center gap-2">
-    <!-- <span role="button" title="share on social media" class="d-flex gap-1 px-2 align-items-center bg-light border border-2 rounded fs-smaller">
-        <span class="material-symbols-outlined fs-6">g_translate</span>
-        <span class="text-primary-200 roboto text-lowercase">translate</span>
-    </span> -->
-    <div class="d-flex gap-2">
-        <!-- <span disabled role="button" title="share on social media" class="d-flex gap-1 px-2 align-items-center bg-light border border-2 rounded fs-smaller">
-            <span class="material-symbols-outlined fs-6">comment</span>
-            <span class="text-primary-200 roboto text-lowercase">comment</span>
-        </span> -->
-        <span @click="utilities.shareBy(title,url)" role="button" title="share on social media" class="d-flex gap-1 px-2 align-items-center bg-light border border-2 rounded fs-smaller">
-            <span class="material-symbols-outlined fs-6">share</span>
-            <span class="text-primary-200 roboto text-lowercase">share</span>
-        </span>
-    </div>
-</div>
+<section class="d-flex flex-column gap-3">
+    <section v-html="translationOutput" id="translationOutput" class="text-justify"></section>
+    
+    <div v-show="spinner || store.spinner" class="spinner-line"></div>
+    <section class="d-flex align-items-center justify-content-end gap-1">
+        
+        <!-- <span class="spinner-grow spinner-grow-sm"></span> -->
+        <div @click="toggleTranslation()" role="button" title="Translate this page" aria-label="translate this page" class="d-flex align-items-center gap-1 border rounded bg-light px-2 py-1">
+            <span class="material-symbols-outlined-none text-secondary">g_translate</span>
+            <span v-if="!translated" class="font-monospace fs-smaller">translate to arabic</span>
+            <span v-else class="font-monospace fs-smaller">see original</span>
+        </div>
+
+        <div @click="sharePage()" role="button" title="Share this page" aria-label="share this page" class="d-flex align-items-center gap-1 border rounded bg-light px-2 py-1">
+            <span class="material-symbols-outlined-none text-secondary">send</span>
+            <span class="font-monospace fs-smaller">share</span>
+        </div>
+        
+        <!-- <div @click="copyPageUrl()" role="button" title="Copy URL" aria-label="Copy url" class="d-flex align-items-center gap-1 border rounded bg-light px-2 py-1">
+            <span class="material-symbols-outlined-none text-secondary">link</span>
+            <span class="font-monospace fs-smaller">copy url</span>
+        </div> -->
+        
+    </section>
+</section>

@@ -29,6 +29,25 @@
     color: var(--j-primary);
 }
 
+
+.material-symbols-outlined-none {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    /* color: var(--j-primary); */
+}
+
+
 /* ELEMENTS */
 :root {
     --j-black: #070707;
@@ -528,4 +547,74 @@ a {
 .bg-test {
     /* background-color: #B3C8CF; */
     background-color: #1d283a;
+}
+
+/* BLOG PAGE STYLES */
+.blog-badge {
+    /* px-2 py-1 bg-j-primary rounded text-light ls-1 me-2 */
+    padding: .1rem .4rem;
+    border-radius: 3px;
+    color: var(--j-white);
+    letter-spacing: 1px;
+    background-color: var(--j-primary);
+}
+
+.article-container {
+    padding: .5rem;
+    border-radius: .4rem;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+    background-color: var(--j-white);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.article-body {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
+.article-container>.article-body>.article-p {
+    /* font-normal text-j-dark text-fade fs-x-small fw-bold */
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: x-small;
+    font-weight: bold;
+
+    color: var(--j-dark);
+
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+
+
+.article-container>.article-body>.article-h1 {
+    /* my-2 font-title text-j-dark */
+    
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: var(--j-dark);
+
+}
+
+.article-container>.article-body>.article-aside {
+    /* font-normal text-j-dark */
+    
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+
+    color: var(--j-dark);
+    text-align: justify;
 }
