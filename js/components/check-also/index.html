@@ -50,11 +50,11 @@
             </div>
         </div>
         <div v-else class="d-flex flex-column gap-2">
-            <a :href="node.url" :aria-label="node.title" class="d-flex gap-1 align-items-center" v-for="node in store.services.slice(-8)" :key="node.id">
+            <a :href="node.url" :aria-label="node.title" class="d-flex gap-1 align-items-center" v-for="node in store.services.filter(node => node.badge.trim().toUpperCase() != 'DEMO').slice(-8).reverse()" :key="node.id">
                 <span class="material-symbols-outlined fs-6 text-primary-150">feed</span>
                 <span class="text-secondary fs-small text-fade">services / {{node.title}}</span>
             </a>
-            <a :href="node.url" :aria-label="node.title" class="d-flex gap-1 align-items-center" v-for="node in store.blogs.slice(-8)" :key="node.id">
+            <a :href="node.url" :aria-label="node.title" class="d-flex gap-1 align-items-center" v-for="node in store.blogs.filter(node => node.badge.trim().toUpperCase() != 'DEMO').slice(-8).reverse()" :key="node.id">
                 <span class="material-symbols-outlined fs-6 text-primary-150">feed</span>
                 <span class="text-secondary fs-small text-fade">blogs / {{node.title}}</span>
             </a>
