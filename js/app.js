@@ -18,7 +18,7 @@ const app = Vue.createApp({
         }
     },
     methods: {
-
+        
         async getProfile() {
             try {
                 this.store.spinner = true
@@ -26,8 +26,8 @@ const app = Vue.createApp({
                     console.log(res);
 
                     // this.store.links = res.links.map(node => new Link(node))
-                    this.store.blogs = res.data.blogs.filter(node => node.badge != 'DEMO').map(node => new Blog(node))
-                    this.store.services = res.data.services.filter(node => node.badge != 'DEMO').map(node => new Service(node))
+                    this.store.blogs = res.data.blogs.filter(node => node.badge.trim() != 'DEMO').map(node => new Blog(node))
+                    this.store.services = res.data.services.filter(node => node.badge.trim() != 'DEMO').map(node => new Service(node))
                     this.store.contact = new Contact(res.data.contact)
                     console.log(this.store.services);
                     this.store.spinner = false
@@ -44,6 +44,7 @@ const app = Vue.createApp({
     mounted() {
         AOS.init()
         this.getProfile()
+        utilities.symbolise()
 
         if (document.querySelector('html').lang == 'ar') {
             if (document.getElementById('original')) {

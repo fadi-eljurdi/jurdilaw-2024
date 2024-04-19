@@ -1,9 +1,14 @@
 <figure>
-    <swiper-container class="w-100" :spaceBetween="15" :pagination="{clickable:true}" :autoplay="{delay:2500,disableOnInteraction: true}">
+    <div v-if="store.spinner" class="skeleton ratio ratio-16x9 rounded"></div>
+    <swiper-container v-else class="w-100" :spaceBetween="15" :pagination="{clickable:true}" :autoplay="{delay:2500,disableOnInteraction: true}">
         <swiper-slide v-for="node in thumbnails" :key="node">
             <div class="ratio ratio-16x9">
                 <img :src="node" alt="img" width="1920" height="1080" class="object-fit-contain rounded">
-                <iframe v-if="node.includes('youtube')" class="object-fit-cover" :src="`https://www.youtube-nocookie.com/embed/${utilities.getYouTubeId(node)}?rel=0`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </swiper-slide>
+        <swiper-slide class="" v-for="node in youtubeLinks" :key="node">
+            <div class="ratio ratio-16x9">
+                <iframe class="object-fit-cover rounded" :src="`https://www.youtube-nocookie.com/embed/${node}?rel=0`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </swiper-slide>
     </swiper-container>

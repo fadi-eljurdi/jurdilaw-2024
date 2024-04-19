@@ -1,0 +1,54 @@
+<section class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-9">
+            <swiper-container class="w-100" :spaceBetween="15" :pagination="{clickable:true}" :autoplay="{delay:2500,disableOnInteraction: true}" navigation>
+                <swiper-slide v-if="getThumbnailsLinks.length > 0" v-for="node in getThumbnailsLinks" :key="node">
+                    <!-- Thumbnails -->
+                    <figure>
+                        <div class="ratio ratio-16x9">
+                            <img :src="typeof(node) === 'object' ? node.src64 : node" alt="img" width="1920" height="1080" class="object-fit-contain rounded">
+                        </div>
+                    </figure>
+                </swiper-slide>
+                
+                <swiper-slide v-if="youtubeLinks.length > 0" v-for="node in youtubeLinks" :key="node">
+                    <!-- Youtube -->
+                    <figure>
+                        <div class="ratio ratio-16x9">
+                            <iframe class="object-fit-cover rounded" :src="`https://www.youtube-nocookie.com/embed/${node}?rel=0`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </figure>
+                </swiper-slide>
+                <swiper-slide v-if="canvaLinks.length > 0" v-for="node in canvaLinks" :key="node">      
+                    <!-- Canva -->
+                    <figure>
+                        <div class="ratio ratio-4x3">
+                            <iframe class="rounded" :src="'https://www.canva.com/design/'+node+'/view?embed'" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                        </div>
+                    </figure>
+                </swiper-slide>
+                <swiper-slide v-if="googleFiles.length > 0" v-for="node in googleFiles">
+                    <!-- Google Doc + Sheets + Slides + Media Files -->
+                    <figure>
+                        <div class="ratio ratio-4x3">
+                            <iframe class="rounded" :src="'https://drive.google.com/file/d/'+node+'/preview'" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                        </div>
+                    </figure>
+                </swiper-slide>
+                <swiper-slide v-if="googleFormsLinks.length > 0"  v-for="node in googleFormsLinks">
+                    <!-- Google Forms -->
+                    <figure>
+                        <div class="ratio ratio-1x1">
+                            <iframe class="rounded" :src="'https://docs.google.com/forms/d/e/'+node+'/viewform?embedded=true'" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                        </div>
+                    </figure>
+                </swiper-slide>
+            </swiper-container>
+            <div class="d-flex justify-content-between my-2" v-if="allLinks.length > 0">
+                <button @click="slideBack" class="btn btn-sm btn-outline-secondary">Slide Back</button>
+                <button @click="slideNext" class="btn btn-sm btn-outline-secondary">Slide Next</button>
+            </div>
+            
+        </div>
+    </div>
+</section>

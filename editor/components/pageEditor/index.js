@@ -1,6 +1,12 @@
 import utilities from "../../../js/utilities.js"
 import store from '../../../js/store.js'
-var notify = new AWN();
+var notify = new AWN({
+    labels:{
+        alert:"Basita 😉",
+        success:"MESHE L7AL 😎",
+        warning:"MA MESHE L7AL 😟"
+    }
+});
 
 export default {
     template: await utilities.getPage('/editor/components/pageEditor/index.html'),
@@ -16,31 +22,31 @@ export default {
         filteredPages() {
             if (this.searchInput.trim().toLowerCase() != '') {
                 return [
-                    ...this.store.blogs.filter(e => e.title.trim().toLowerCase().includes(this.searchInput.trim().toLowerCase())),
-                    ...this.store.services.filter(e => e.title.trim().toLowerCase().includes(this.searchInput.trim().toLowerCase()))
+                    ...this.store.blogs.reverse().filter(e => e.title.trim().toLowerCase().includes(this.searchInput.trim().toLowerCase())),
+                    ...this.store.services.reverse().filter(e => e.title.trim().toLowerCase().includes(this.searchInput.trim().toLowerCase()))
                 ]
             }
 
             switch (this.$route.query.tab) {
                 case 'all': {
                     // return [...this.store.blogs.slice(0, 2), ...this.store.services.slice(0, 2)]
-                    return [...this.store.blogs, ...this.store.services]
+                    return [...this.store.blogs.reverse(), ...this.store.services.reverse()]
                 }
                 case 'blogs': {
                     return [
-                        ...this.store.blogs
+                        ...this.store.blogs.reverse()
                     ]
                 }
                 case 'services': {
                     return [
-                        ...this.store.services
+                        ...this.store.services.reverse()
                     ]
                 }
 
                 default: {
                     // return [...this.store.blogs.slice(0, 3), ...this.store.services.slice(0, 3)]
                     
-                    return [...this.store.blogs, ...this.store.services]
+                    return [...this.store.blogs.reverse(), ...this.store.services.reverse()]
                 }
 
             }
@@ -49,7 +55,7 @@ export default {
     methods: {
         copyUrl(url) {
             navigator.clipboard.writeText(url)
-            notify.info(url, { labels: { 'info': 'Copied!' } })
+            notify.info(url, { labels: { 'info': 'Copied! ✅' } })
         },
         changeTab(query) {
             this.$router.push({
@@ -64,7 +70,7 @@ export default {
 
             const label = {
                 labels: {
-                    confirm: 'CONFIRMATION REQUIRED'
+                    confirm: 'CONFIRMATION REQUIRED 🧐'
                 }
             }
 
@@ -99,9 +105,9 @@ export default {
                                 this.store.services = this.store.services.filter(b => b.id != id)
                             }
 
-                            notify.success(res.message, { labels: { success: 'Meshe l7al' } })
+                            notify.success(res.message)
                         } else {
-                            notify.warning(res.message, { labels: { warning: 'Ma Meshe l7al' } })
+                            notify.warning(res.message)
                         }
                     }).catch(err => {
                         this.spinner = false
@@ -112,10 +118,7 @@ export default {
                 }
             }
 
-            var onCancel = () => {
-                // notify.tip('DONE')
-            }
-            notify.confirm('Are you sure you want to delete this page??', onConfirm, onCancel, label)
+            notify.confirm('Are you sure you want to delete this page??', onConfirm, true,label)
         }
     }
 }

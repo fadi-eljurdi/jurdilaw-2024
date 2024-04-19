@@ -6,7 +6,7 @@
                     <div class="accordion-item">
                         <h2 @click="getUpdatedPayload()" class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                                <span class="sans fw-bold">1. Updating Page Details</span>
+                                <span class="sans fw-bold">1. UPDATING Page Details</span>
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#pageEditor">
@@ -26,14 +26,15 @@
                                     <!-- Images -->
                                     
                                     <div class="input-group">
-                                        <span class="input-group-text" @dblclick="resetThumbnails()">
+                                        <span class="input-group-text position-relative">
                                             <i class="bi bi-image"></i>
+                                            <!-- <span v-if="updatedPage.media.split(',').length > 0" class="badge bg-primary fs-xx-small position-absolute top-0 start-100 translate-middle badge rounded-pill z-1 sans">{{updatedPage.media.split(',').length}}</span> -->
                                         </span>
                                         <div class="form-control text-secondary d-flex gap-3 align-items-center justify-content-between" @click="selectImages" aria-label="add images" role="button" title="add images" >
                                             <span class="">Thumbnail</span>
                                             
                                             <div class="d-flex gap-2 align-items-center mx-2">
-                                                <img v-if="typeof(updatedPage.media) == 'object'" v-for="node in updatedPage.media" :src="node.src64" :alt="node.alt" width="40" height="40" class="object-fit-contain rounded border">
+                                                <img v-if="typeof(updatedPage.media) === 'object'" v-for="node in updatedPage.media" :src="node.src64" :alt="node.alt" width="40" height="40" class="object-fit-contain rounded border">
                                                 <img v-else v-for="node in updatedPage.media.split(',')" :src="node" :alt="node" width="40" height="40" class="object-fit-contain rounded border">
                                             </div>
                                         </div>
@@ -41,11 +42,30 @@
 
                                     
                                     <!-- media links -->
-                                    <div class="input-group">
+                                    <!-- <div class="input-group">
                                         <span class="input-group-text">
                                             <i class="bi bi-link"></i>
                                         </span>
                                         <input v-model="updatedPage.links" type="text" placeholder="Media Links" class="form-control">
+                                    </div> -->
+
+                                    <!-- media links -->
+                                    <div class="d-flex flex-column gap-3 mt-3">
+                                        <div  v-if="filteredLinks.length > 0 && updatedPage.links.trim() != ''" class="d-flex align-items-center flex-wrap gap-1">
+                                            <div v-for="node in filteredLinks" class="d-flex align-items-center gap-1 px-2 fs-x-small border rounded-pill">
+                                                <span class="material-symbols-outlined fs-6">attachment</span>
+                                                <span class="text-fade">{{node}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-text position-relative">
+                                                <!-- <i class="bi bi-link"></i> -->
+                                                <span class="material-symbols-outlined fs-6">attachment</span>
+                                                <span v-if="filteredLinks.length > 0 && updatedPage.links.trim() != ''" class="badge bg-primary fs-xx-small position-absolute top-0 start-100 translate-middle badge rounded-pill z-1 sans">{{filteredLinks.length}}</span>
+                                            </span>
+                                            <textarea rows="3" style="outline: none !important;" v-model="updatedPage.links" type="text" placeholder="Attachments: Youtube, Google Drive, Canva URL (separated by comma ,)" class="form-control"></textarea>
+                                            <span class="input-group-text"><span class="material-symbols-outlined">info</span></span>
+                                        </div>
                                     </div>
 
                                     <!-- TITLE -->
@@ -146,6 +166,44 @@
                                             <span class="px-2 py-1 border d-flex align-items-center gap-1 rounded fs-small"><span class="material-symbols-outlined text-primary-200 fs-6">translate</span><span class="d-none d-md-block">Translator</span></span>
                                         </div>
                                     </div> -->
+                                    
+                                    <aside class="d-flex align-items-center gap-1 flex-wrap fs-small mt-2">
+                                        <span role="button" title="Insert Symbols" data-bs-toggle="modal" data-bs-target="#symbolsModal" class="px-2 py-0 roboto bg-light rounded border">Symbols</span>
+                                        <!-- Modal -->
+                                        <div class="modal modal-xl fade" id="symbolsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h1 class="modal-title fs-5">SYMBOLS</h1>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="accordion" id="symbolsAcc">
+                                                        <div class="accordion-item" v-for="node in utilities.getSymbols()">
+                                                          <h2 class="accordion-header">
+                                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="'#'+node">
+                                                              {{node}}
+                                                            </button>
+                                                          </h2>
+                                                          <div :id="node" class="accordion-collapse collapse" data-bs-parent="#symbolsAcc">
+                                                            <div class="accordion-body">
+                                                                <section class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+                                                                    <span @click="utilities.copi(pod.hex)" data-bs-dismiss="modal" v-for="pod in utilities.getSymbols(node)" class="fs-6 btn btn-sm btn-outline-dark">
+                                                                        <span v-html="pod.hex"></span>
+                                                                    </span>
+                                                                </section>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </aside>
                                     <div id="editor-container"></div>
                                     
                                     <!-- generateArticle Ai Modal -->
@@ -222,6 +280,9 @@
                         <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#pageEditor">
                             <div class="p-2">
                                 <aside>
+                                    <section>
+                                        <media-preview :links="filteredLinks" :thumbnails="updatedPage.media"></media-preview>
+                                    </section>
                                     <section class="d-flex flex-column gap-3">
                                         <aside class="p-2 border rounded" style="min-height: 241.6px;">
                                             <div id="editor-output"></div>

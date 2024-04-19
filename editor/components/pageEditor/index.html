@@ -3,27 +3,27 @@
         <div class="col-12">
             <aside class="input-group">
                 <input v-model="searchInput" type="text" class="form-control" placeholder="Search for a page">
-                
+
                 <span class="input-group-text" data-bs-toggle="dropdown" role="button" title="Filter pages">
                     <!-- <i class="bi bi-three-dots fs-5"></i> -->
                     <i class="bi bi-filter fs-5"></i>
                 </span>
                 <ul class="dropdown-menu fs-small">
                     <li class="dropdown-item" @click="changeTab('all')" role="button">
-                        <i v-if="$route.query.tab == 'all'"  class="bi bi-check2 text-primary-200 me-2"></i>
+                        <i v-if="$route.query.tab == 'all'" class="bi bi-check2 text-primary-200 me-2"></i>
                         <span>Show all</span>
                     </li>
                     <li class="dropdown-item" @click="changeTab('blogs')" role="button">
-                        <i v-if="$route.query.tab == 'blogs'"  class="bi bi-check2 text-primary-200  me-2"></i>
+                        <i v-if="$route.query.tab == 'blogs'" class="bi bi-check2 text-primary-200  me-2"></i>
                         <span>Show all blogs</span>
                     </li>
                     <li class="dropdown-item" @click="changeTab('services')" role="button">
-                        <i v-if="$route.query.tab == 'services'"  class="bi bi-check2 text-primary-200  me-2"></i>
+                        <i v-if="$route.query.tab == 'services'" class="bi bi-check2 text-primary-200  me-2"></i>
                         <span>Show all services</span>
                     </li>
                 </ul>
 
-                <router-link :to="{name:'newPage'}"  class="input-group-text" title="Create new page">
+                <router-link :to="{name:'newPage'}" class="input-group-text" title="Create new page">
                     <span>
                         <i class="bi bi-file-earmark-plus fs-5"></i>
                     </span>
@@ -31,7 +31,7 @@
             </aside>
             <div v-if="spinner" class="spinner-line"></div>
         </div>
-        <div class="col-12 col-lg-4" v-for="page in filteredPages">
+        <!-- <div class="col-12 col-lg-4" v-for="page in filteredPages">
             
             <aside class="p-2 bg-light rounded shadow-sm d-flex flex-column gap-3">
                 <div class="ratio ratio-16x9"><img :src="page.media" :alt="page.title" class="object-fit-cover rounded skeleton shadow-sm"></div>
@@ -57,6 +57,42 @@
                     <p class="sans fs-small text-secondary text-justify">{{page.description}}</p>
                 </div>
             </aside>
-        </div>
+        </div> -->
+        <section class="bg-light rounded shadow-sm">
+            <aside class="table-responsive">
+                <table class="table table-hover sans">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Timestamp</th>
+                            <th scope="col">Folder</th>
+                            <th scope="col">Thumbnail</th>
+                            <th scope="col">Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="page in filteredPages">
+                            <th scope="row" style="width: 50px;">
+                                <div class="d-flex gap-2" v-if="!spinner">
+                                    <span class="material-symbols-outlined text-secondary" data-bs-toggle="dropdown" role="button" aria-label="options">more_horiz</span>
+                                    <ul class="dropdown-menu fs-small">
+                                        <li class="dropdown-item" role="button" title="Copy URL" @click="copyUrl(page.url)">Copy URL</li>
+                                        <li class="dropdown-item" role="button"><router-link :to="`/update-page/${page.folder}/${page.id}`">Update this page</router-link></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li @click="deletePage(page.folder,page.id)" class="dropdown-item text-danger opacity-75" role="button">Delete this page</li>
+                                    </ul>
+                                </div>
+                            </th>
+                            <td>{{utilities.timo(page.timestamp)}}</td>
+                            <td>{{page.folder}}</td>
+                            <td>
+                                <div class="ratio ratio-16x9"><img :src="page.media.split(',')[0]" :alt="page.title" class="object-fit-cover rounded skeleton shadow-sm"></div>
+                            </td>
+                            <td style="width: max-content;">{{page.title}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
     </div>
 </section>

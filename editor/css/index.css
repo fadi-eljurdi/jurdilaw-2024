@@ -222,6 +222,7 @@ span {
 }
 
 
+
 .sans {
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
@@ -269,7 +270,9 @@ span {
     background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC 51%, #02AAB0 100%) !important;
 }
 
-
+.text-break{
+    word-wrap: break-word;
+}
 .text-fade {
     display: -webkit-box;
     overflow: hidden;

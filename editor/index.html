@@ -29,9 +29,9 @@
 
 <body id="root" class="bg-grid">
     
-    <section v-if="store.devmode" class="w-100 h-100 bg-grid d-flex justify-content-center align-items-center position-fixed top-0 start-0" style="z-index: 999;">
+    <!-- <section v-if="store.devmode" class="w-100 h-100 bg-grid d-flex justify-content-center align-items-center position-fixed top-0 start-0" style="z-index: 999;">
         <p>Editor is updating... please try again later</p>
-    </section>
+    </section> -->
     <section v-if="!store.isLogedIn" class="w-100 h-100 bg-grid d-flex justify-content-center align-items-center position-fixed z-3 top-0 start-0">
         <div class="container">
             <div class="row justify-content-center">
@@ -59,7 +59,7 @@
         </div>
     </section>
     <header v-if="store.isLogedIn" class="w-100 py-2 px-3 shadow-sm bg-light d-flex align-items-center justify-content-between">
-        <router-link to="/"><h6 class="sans text-primary-200 d-flex align-items-center gap-2">EDITOR</h6></router-link>
+        <router-link to="/"><h6 class="sans text-primary-200 d-flex align-items-center gap-2">EDITOR &copy;</h6></router-link>
         <div class="d-none d-lg-flex gap-2 align-items-center">
             <router-link to="/">Pages</router-link>
             <router-link :to="{name:'contactEditor'}">Contact</router-link>

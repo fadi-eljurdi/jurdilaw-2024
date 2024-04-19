@@ -4,9 +4,19 @@ import utilities from '../../js/utilities.js'
 import Blog from '../../js/classes/Blog.js'
 import Service from '../../js/classes/Service.js'
 
-import Contact from '../../js/classes/Contact.js'
+
 import '../../js/packages/day.min.js'
 import '../../js/packages/relativetime.min.js'
+import '../../js/packages/swiper.min.js'
+
+
+var notify = new AWN({
+    labels:{
+        alert:"Basita 😉",
+        success:"MESHE L7AL 😎",
+        warning:"MA MESHE L7AL 😟"
+    }
+});
 
 
 var app = Vue.createApp({
@@ -19,60 +29,71 @@ var app = Vue.createApp({
     },
     methods: {
 
-        login() {
-            this.spinner = true
-            fetch(this.store.api, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "text/plain"
-                },
-                body: JSON.stringify({
-                    username: this.store.username,
-                    password: this.store.password
+        async login() {
+
+            try {
+                this.spinner = true
+                var res = await fetch(this.store.api, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "text/plain"
+                    },
+                    body: JSON.stringify({
+                        username: this.store.username,
+                        password: this.store.password
+                    })
                 })
-            }).then(res => res.json()).then(res => {
+                res = await res.json()
                 console.log(res);
+
                 if (res.status) {
                     this.spinner = false
                     this.store.geminiToken = res.data.geminiToken
                     this.store.isLogedIn = true
-                    // this.getProfile()
+                } else {
+                    this.spinner = false
+                    throw res.message
                 }
-            }).catch(err => {
+
+            } catch (err) {
                 console.log(err);
+
                 this.spinner = false
-            })
+                notify.alert(`${err}`)
+            }
+
+
         },
 
-        getProfile() {
-            this.spinner = true
-            fetch(this.store.api + '?getProfile').then(res => res.json()).then(res => {
-                console.log(res);
-                if (res.status) {
+        async getProfile() {
+            try {
 
+                this.spinner = true
+                var res = await fetch(this.store.api + '?getProfile')
+                res = await res.json()
+
+                if (res.status) {
                     this.store.blogs = res.data.blogs.map(node => new Blog(node))
                     this.store.services = res.data.services.map(node => new Service(node))
-                    this.store.contact = {...res.data.contact}
+                    this.store.contact = { ...res.data.contact }
                     this.store.nextContact = res.data.contact
-                    // this.store.contact = new Contact(res.data.contact)
+                    this.spinner = false
 
-                    console.log(this.store.blogs);
-                    console.log(this.store.services);
+                } else {
+                    this.spinner = false
+                    throw res.message
                 }
 
-                this.spinner = false
+            } catch (err) {
 
-            }).catch(err => {
-                console.log(err);
                 this.spinner = false
-            })
+                console.log(err);
+                notify.alert(err)
+            }
         }
     },
     async mounted() {
         this.getProfile()
-        // var notify = new AWN(globalOptions);
-        // // fetching the template
-        // this.store.nextPageTemplate = await utilities.getPage('/_template/index.html')
     }
 })
 
@@ -91,6 +112,9 @@ app.component('update-page', updatePage)
 
 import contactEditor from '../../editor/components/contactEditor/index.js'
 app.component('contact-editor', contactEditor)
+
+import mediaPreview from '../../editor/components/mediaPreview/index.js'
+app.component('media-preview', mediaPreview)
 
 // import linksEditor from '../../editor/components/linksEditor/index.js'
 // app.component('links-editor', linksEditor)

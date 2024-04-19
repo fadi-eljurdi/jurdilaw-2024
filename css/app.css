@@ -618,3 +618,7 @@ a {
     color: var(--j-dark);
     text-align: justify;
 }
+
+.form-control:focus{
+    outline: none !important;
+}
