@@ -17757,7 +17757,8 @@ function getSymbols(category = false) {
 function symbolise() {
 
     var element = document.querySelector('.article-aside')
-    for (let node of symbols) {
+    if(element){
+
         element.innerHTML = element.innerHTML.replaceAll('amp;', '')
     }
 }

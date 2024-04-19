@@ -20,7 +20,7 @@ export default {
     },
     computed: {
         filteredServices() {
-            return this.store.spinner ? ['','','','','','','','','',''] : this.store.services
+            return this.store.spinner ? ['','','','','','','','','',''] : this.store.services.filter(node => node.badge.trim().toUpperCase() != 'DEMO')
             // return this.store.services.filter(s => s.badge != 'DEMO')
             // return this.store.services
         }

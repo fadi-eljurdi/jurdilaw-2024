@@ -38,7 +38,7 @@ export default {
             // 'https://drive.google.com/file/d/1Bh0U3h5xZUi9FBTXFTDSEXPzgO_xVN1u/view?usp=sharing',
             // ]
 
-            var links = this.selectedPage.links.split(',')
+            var links = this.selectedPage.links.replaceAll('\n','').split(',')
             var workspaceLinks = links.filter(e => e.includes('https://docs.google.com/spreadsheets/d/') || e.includes('https://docs.google.com/presentation/d/') || e.includes('https://docs.google.com/document/d/'))
             // console.log(workspaceLinks);
             var googleDriveFilesLinks = links.filter(e => e.includes('https://drive.google.com/file/d/'))
@@ -58,7 +58,7 @@ export default {
 
         googleFormsLinks() {
 
-            var links = this.selectedPage.links.split(',')
+            var links = this.selectedPage.links.replaceAll('\n','').split(',')
             var workspaceLinks = links.filter(e => e.includes('https://docs.google.com/forms/d/'))
             // console.log(workspaceLinks);
 
@@ -77,7 +77,7 @@ export default {
             //     'https://www.canva.com/design/DAFiU9g0Kmg/view',
             // ]
 
-            var links = this.selectedPage.links.split(',')
+            var links = this.selectedPage.links.replaceAll('\n','').split(',')
             var canvaLinks = links.filter(e => e.includes('https://www.canva.com/design/'))
             return [
                 ...canvaLinks.map(node => {

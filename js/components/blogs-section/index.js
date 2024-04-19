@@ -15,8 +15,8 @@ export default {
                 return ['', '', '', '', '', '', '', '', '', '']
             }
 
-            if (this.path == '/blogs/') return this.store.blogs
-            return this.store.blogs.slice(-8).reverse()
+            if (this.path == '/blogs/') return this.store.blogs.filter(node => node.badge.trim().toUpperCase() != 'DEMO')
+            return this.store.blogs.filter(node => node.badge.trim().toUpperCase() != 'DEMO').slice(-8).reverse()
         }
     }
 }

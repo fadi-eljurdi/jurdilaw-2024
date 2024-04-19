@@ -53,7 +53,7 @@
               </div>
             </nav>
             <nav v-else class="d-flex flex-column roboto gap-1">
-                <a :aria-label="node.title"  :href="node.url" class="d-flex align-items-center gap-2" v-for="node in store.services">
+                <a :aria-label="node.title"  :href="node.url" class="d-flex align-items-center gap-2" v-for="node in store.services.filter(node => node.badge.trim().toUpperCase() != 'DEMO').reverse()">
                     <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 w-100">{{node.title}}</span>
                 </a>
             </nav>
@@ -73,7 +73,7 @@
               </div>
             </nav>
             <nav v-else class="d-flex flex-column roboto gap-1">
-              <a :aria-label="node.title"  :href="node.url" class="d-flex align-items-center gap-2" v-for="node in store.blogs.slice(-1 * store.services.length).reverse()">
+              <a :aria-label="node.title"  :href="node.url" class="d-flex align-items-center gap-2" v-for="node in store.blogs.filter(node => node.badge.trim().toUpperCase() != 'DEMO').slice(-1 * store.services.length).reverse()">
                 <span class="material-symbols-outlined text-primary-100">link</span><span class="opacity-75 text-fade w-100">{{node.title}}</span>
               </a>
             </nav>

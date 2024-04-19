@@ -26,8 +26,8 @@ const app = Vue.createApp({
                     console.log(res);
 
                     // this.store.links = res.links.map(node => new Link(node))
-                    this.store.blogs = res.data.blogs.filter(node => node.badge.trim() != 'DEMO').map(node => new Blog(node))
-                    this.store.services = res.data.services.filter(node => node.badge.trim() != 'DEMO').map(node => new Service(node))
+                    this.store.blogs = res.data.blogs.map(node => new Blog(node))
+                    this.store.services = res.data.services.map(node => new Service(node))
                     this.store.contact = new Contact(res.data.contact)
                     console.log(this.store.services);
                     this.store.spinner = false
