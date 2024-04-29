@@ -1,10 +1,20 @@
 <section class="d-flex flex-column gap-3">
-    <aside class="p-2 bg-light rounded shadow-sm d-flex flex-column gap-3" v-if="[...canvaLinks,...googleFiles,...googleFormsLinks].length != 0">
+    <aside class="p-2 bg-light rounded shadow-sm d-flex flex-column gap-3" v-if="[...canvaLinks,...googleFiles,...googleFormsLinks,...vismeLinks].length != 0">
         <h5 class="fs-6 text-primary-200 font-title d-flex align-items-center gap-2">
             
             <span>Attachments</span>
             <span class="material-symbols-outlined fs-5">attachment</span>
         </h5>
+        
+        
+        <section class="d-flex flex-column gap-1">
+            <!-- Visme -->
+            <figure v-for="node in vismeLinks">
+                <div class="ratio ratio-4x3">
+                    <iframe class="rounded visme object-fit-contain" :src="'https://my.visme.co/_embed/'+node+'?responsive=1'" :data-projectid="node" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                </div>
+            </figure>
+        </section>
         
         <section class="d-flex flex-column gap-1">
             <!-- Canva -->

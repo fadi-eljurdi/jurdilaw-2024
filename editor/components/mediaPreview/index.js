@@ -50,6 +50,22 @@ export default {
                 })
             ]
         },
+        
+
+        vismeLinks() {
+
+            // var links = [
+            //     'https://my.visme.co/view/8r6ev7kp-untitled-project',
+            // ]
+
+            // var links = this.selectedPage.links.replaceAll('\n','').split(',')
+            var vismeLinks = this.links.filter(e => e.includes('https://my.visme.co/view/'))
+            return [
+                ...vismeLinks.map(node => {
+                    if (utilities.getVismeId(node)) return utilities.getVismeId(node)
+                })
+            ]
+        },
 
         googleFiles() {
 

@@ -38,7 +38,7 @@ var app = {
         filteredLinks() {
             try {
                 return this.updatedPage.links.split(',').filter(e => e != '').map(e => e.trim()).filter(link => {
-                    return link.includes('https://docs.google.com/spreadsheets/d/') || link.includes('https://docs.google.com/presentation/d/') || link.includes('https://docs.google.com/document/d/') || link.includes('https://drive.google.com/file/d/') || link.includes('https://docs.google.com/forms/d/') || link.includes('https://www.canva.com/design/') || link.includes('youtu')
+                    return link.includes('https://my.visme.co/view/') || link.includes('https://docs.google.com/spreadsheets/d/') || link.includes('https://docs.google.com/presentation/d/') || link.includes('https://docs.google.com/document/d/') || link.includes('https://drive.google.com/file/d/') || link.includes('https://docs.google.com/forms/d/') || link.includes('https://www.canva.com/design/') || link.includes('youtu')
                 })
             } catch (err) {
                 console.log(err);

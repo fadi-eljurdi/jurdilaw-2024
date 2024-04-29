@@ -17768,8 +17768,22 @@ function copi(value){
     alert(value + ' Copied!')
 }
 
+function getVismeId(url) {
+    // Regular expression to match the Visme project ID
+    const regex = /(?:https?:\/\/)?(?:www\.)?visme\.co\/(?:view)\/([a-zA-Z0-9-]+)/;
+    const match = url.match(regex);
+
+    // If match is found, return the project ID
+    if (match && match.length > 1) {
+        return match[1];
+    } else {
+        return null; // Return null if no match is found
+    }
+}
+
 export default {
     getSymbols,
+    getVismeId,
     copi,
     symbolise,
     getDriveFileId,

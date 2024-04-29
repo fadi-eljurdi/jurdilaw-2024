@@ -19,6 +19,16 @@
                         </div>
                     </figure>
                 </swiper-slide>
+                
+                <swiper-slide v-if="vismeLinks.length > 0" v-for="node in vismeLinks" :key="node">      
+                    <!-- Visme -->
+                    <figure>
+                        <div class="ratio ratio-4x3">
+                            <iframe class="rounded visme object-fit-contain" :src="'https://my.visme.co/_embed/'+node+'?responsive=1'" :data-projectid="node" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                        </div>
+                    </figure>
+                </swiper-slide>
+
                 <swiper-slide v-if="canvaLinks.length > 0" v-for="node in canvaLinks" :key="node">      
                     <!-- Canva -->
                     <figure>

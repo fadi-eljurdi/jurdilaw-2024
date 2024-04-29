@@ -2,6 +2,7 @@ import utilities from "../../utilities.js"
 import store from '../../store.js'
 import Blog from '../../classes/Blog.js'
 import Service from '../../classes/Service.js'
+import '../../packages/visme.min.js'
 
 export default {
     template: await utilities.getPage('/js/components/check-also/index.html'),
@@ -82,6 +83,21 @@ export default {
             return [
                 ...canvaLinks.map(node => {
                     if (utilities.getCanvaId(node)) return utilities.getCanvaId(node)
+                })
+            ]
+        },
+        
+        vismeLinks() {
+
+            // var links = [
+            //     'https://my.visme.co/view/8r6ev7kp-untitled-project',
+            // ]
+
+            var links = this.selectedPage.links.replaceAll('\n','').split(',')
+            var vismeLinks = links.filter(e => e.includes('https://my.visme.co/view/'))
+            return [
+                ...vismeLinks.map(node => {
+                    if (utilities.getVismeId(node)) return utilities.getVismeId(node)
                 })
             ]
         }
