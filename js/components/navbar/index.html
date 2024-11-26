@@ -5,10 +5,10 @@
     
     <section class="d-none d-lg-flex align-items-center gap-5 font-title">
         <nav class="d-flex align-items-center gap-3">
-            <a aria-label="Home" href="/" class="navbar-link-active">Home</a>
-            <a aria-label="Services" href="/services/" class="navbar-link">Services</a>
-            <a aria-label="Policies" href="/docs/" class="navbar-link">Policies & Terms of use</a>
-            <a aria-label="Blogs" href="/blogs/" class="navbar-link">News & Insights</a>
+            <a aria-label="Home" href="/" :class="getActiveClass('/') + ' ' + getActiveClass('/index.html')">Home</a>
+            <a aria-label="Services" href="/services/":class="getActiveClass('/services/')">Services</a>
+            <a aria-label="Policies" href="/docs/" :class="getActiveClass('/docs/')">Policies & Terms of use</a>
+            <a aria-label="Blogs" href="/blogs/"  :class="getActiveClass('/blogs/')">News & Insights</a>
         </nav>
         <a href="/contact/" class="btn-action">Contact</a>
     </section>
