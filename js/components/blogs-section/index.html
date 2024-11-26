@@ -58,7 +58,7 @@
                         <section class="d-flex flex-column shadow-sm rounded-chat">
                             <div class="p-2 pt-3 bg-glass d-flex flex-column gap-2">
                                 <span class="material-symbols-outlined fs-1 text-j-grey">news</span>
-                                <p class="font-normal text-j-grey fs-x-small fw-bold"><span class="px-2 py-1 bg-j-primary rounded text-light ls-1 me-2">BLOG</span><time>{{utilities.timo(node.timestamp)}}</time></p>
+                                <p class="font-normal text-j-grey fs-x-small fw-bold"><span class="px-2 py-1 bg-j-primary rounded text-light ls-1 me-2">{{node.badge}}</span><time>{{utilities.timo(node.timestamp)}}</time></p>
                                 <h5 class="font-title text-j-dark fs-5 text-fade-2" style="min-height: 48px;">{{node.title}}</h5>
                                 <p class="font-normal text-j-dark text-justify fs-small text-fade-4" style="min-height: 78px;">{{node.description}}</p>
                                 <a :aria-label="node.title" :href="node.url" class="fs-x-small text-j-dark font-normal text-center ls-1 mt-3 mb-1">continue reading</a>
