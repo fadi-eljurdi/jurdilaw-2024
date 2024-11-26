@@ -8,6 +8,17 @@ export default {
             utilities
         }
     },
+    methods:{
+        getActiveClass(name) {
+            
+            if (location.pathname == name) {
+                // console.log(location.pathname);
+                return "navbar-link-active"
+            }
+
+            return 'navbar-link'
+        }
+    },
     mounted() {
         
         window.addEventListener("scroll", function () {
