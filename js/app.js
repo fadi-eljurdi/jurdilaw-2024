@@ -87,6 +87,10 @@ app.component('contact-section', contactSection)
 import footerSection from './components/footer-section/index.js'
 app.component('footer-section', footerSection)
 
+
+// import hexagons from './components/hexagons/index.js'
+// app.component('hexagons', hexagons)
+
 // BLOGS Components
 import spinner from './components/spinner/index.js'
 app.component('spinner', spinner)

@@ -54,8 +54,8 @@
     --j-dark: #14213d;
     --j-primary: #fca311;
     --j-grey: #8d99ae;
-    --j-light: #e5e5e5;
-    --j-white: #ffffff;
+    --j-light: #f7f7f7;
+    --j-white: #f7f7f7;
 }
 
 
@@ -599,7 +599,7 @@ a {
 
 .article-container>.article-body>.article-h1 {
     /* my-2 font-title text-j-dark */
-    
+
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -609,7 +609,7 @@ a {
 
 .article-container>.article-body>.article-aside {
     /* font-normal text-j-dark */
-    
+
     font-family: "Plus Jakarta Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
@@ -619,6 +619,53 @@ a {
     text-align: justify;
 }
 
-.form-control:focus{
+.form-control:focus {
     outline: none !important;
 }
+
+/* Services */
+
+.hexagon {
+    /* adjust to control the size  */
+    aspect-ratio: 1/cos(30deg);
+    clip-path: polygon(50% -50%, 100% 50%, 50% 150%, 0 50%);
+    position: relative;
+    background-color: var(--j-primary);
+}
+
+.hexagon-outline {
+    --b: 5px;
+    /* adjust to control the border  */
+    /* adjust to control the size  */
+    aspect-ratio: 1/cos(30deg);
+    clip-path:
+        polygon(0 50%, 50% -50%, 100% 50%, 50% 150%, 0 50%,
+            var(--b) 50%,
+            calc(25% + var(--b)*cos(60deg)) calc(100% - var(--b)*sin(60deg)),
+            calc(75% - var(--b)*cos(60deg)) calc(100% - var(--b)*sin(60deg)),
+            calc(100% - var(--b)) 50%,
+            calc(75% - var(--b)*cos(60deg)) calc(var(--b)*sin(60deg)),
+            calc(25% + var(--b)*cos(60deg)) calc(var(--b)*sin(60deg)),
+            var(--b) 50%);
+            
+    position: relative;
+    background: var(--j-primary);
+}
+
+/* HTML: <div class="hexagon"></div> */
+.hexagon-outline-vertical {
+    --b: 5px; /* adjust to control the border  */
+    aspect-ratio: cos(30deg);
+    clip-path: 
+      polygon(50% 0,-50% 50%,50% 100%,150% 50%,50% 0,
+      50% var(--b),
+      calc(100% - var(--b)*sin(60deg)) calc(25% + var(--b)*cos(60deg)),
+      calc(100% - var(--b)*sin(60deg)) calc(75% - var(--b)*cos(60deg)),
+      50% calc(100% - var(--b)),
+      calc(var(--b)*sin(60deg)) calc(75% - var(--b)*cos(60deg)),
+      calc(var(--b)*sin(60deg)) calc(25% + var(--b)*cos(60deg)),
+      50% var(--b));
+      
+    position: relative;
+    background: var(--j-primary);
+  }

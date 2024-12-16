@@ -52,14 +52,22 @@
                 }">
                     <swiper-slide v-for="node in filteredServices" :key="node">
                         
-                        <section class="bg-light d-flex flex-column gap-3 align-items-center p-3 py-4 rounded-15 border">
-                            <a style="height: 24px;"  :href="node.url" ><strong class="font-title text-center text-j-primary fs-6 text-uppercase py-2 mt-2">{{node.title}}</strong></a>
-                            <p style="height: 136.5px;" class="font-normal text-j-dark text-fade-7 fs-small text-justify">{{node.description}}</p>
-                            <a :aria-label="node.title" :href="node.url" class="text-j-dark fs-x-small font-normal d-flex align-items-center gap-2">show more <i class="m-0 bi bi-arrow-right"></i></a>
-                        </section>
+                        <div class="hexagon">
+                            <div class="position-absolute top-50 start-50 translate-middle z-3">
+                                <aside class="text-center border">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam repellat enim nisi ducimus illo quia illum, eos sit quas cumque quasi nemo possimus sint vitae vero iure inventore, ab harum.</p>
+                                </aside>
+                            </div>
+                        </div>
                     </swiper-slide>
                 </swiper-container>
             </div>
         </div>
     </div>
 </section>
+
+<!-- <section class="d-flex flex-column gap-3 align-items-center p-3 py-4 rounded-15 border">
+    <a style="height: 24px;"  :href="node.url" ><strong class="font-title text-center text-j-primary fs-6 text-uppercase py-2 mt-2">{{node.title}}</strong></a>
+    <p style="height: 136.5px;" class="font-normal text-j-dark text-fade-7 fs-small text-justify">{{node.description}}</p>
+    <a :aria-label="node.title" :href="node.url" class="text-j-dark fs-x-small font-normal d-flex align-items-center gap-2">show more <i class="m-0 bi bi-arrow-right"></i></a>
+</section> -->
