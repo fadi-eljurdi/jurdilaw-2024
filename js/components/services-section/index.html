@@ -1,10 +1,14 @@
 <section style="overflow-x: hidden !important;">
     <div class="container">
-        <div class="row justify-content-center g-3">
-            <div class="col-12">
+        <div class="row justify-content-center g-1">
+            <div class="col-12 my-3">
                 <div class="d-flex flex-column gap-2">
-                    <h3 data-aos="zoom-in-right" data-aos-duration="1000" class="font-title text-j-grey ps-2 border-tag-left">Our Services</h3>
-                    <p data-aos="zoom-out" data-aos-duration="1500" class="font-normal text-j-dark fs-small">Our focus is media and technology but we understand that our clients may need a helping hand in other areas of the law, for that we extend our assistance to our clients to cover other areas of practice, providing our clients with 360-degree legal service. </p>
+                    <h3 data-aos="zoom-in-right" data-aos-duration="1000"
+                        class="font-title text-j-grey ps-2 border-tag-left">Our Services</h3>
+                    <p data-aos="zoom-out" data-aos-duration="1500" class="font-normal text-j-dark fs-small">Our focus
+                        is media and technology but we understand that our clients may need a helping hand in other
+                        areas of the law, for that we extend our assistance to our clients to cover other areas of
+                        practice, providing our clients with 360-degree legal service. </p>
                 </div>
             </div>
             <div class="col-12">
@@ -19,10 +23,11 @@
                     },
                 }">
                     <swiper-slide v-for="node in filteredServices" :key="node">
-                        <section class="bg-light d-flex flex-column gap-4 align-items-center p-3 py-4 rounded-15 border">
+                        <section
+                            class="bg-light d-flex flex-column gap-4 align-items-center p-3 py-4 rounded-15 border">
 
                             <div class="rounded-pill skeleton" style="width: 50%; height: .8rem;"></div>
-                            
+
                             <div class="d-flex flex-column align-items-start gap-2 w-100">
                                 <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
                                 <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
@@ -34,10 +39,10 @@
                                 <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
                                 <div class="rounded-pill skeleton" style="width: 70%; height: .3rem;"></div>
                             </div>
-                            
+
                             <div class="rounded-pill skeleton" style="width: 25%; height: .4rem;"></div>
                         </section>
-                        
+
                     </swiper-slide>
                 </swiper-container>
                 <swiper-container v-else :pagination="{clickable:true}" :spaceBetween="10" :breakpoints="{
@@ -51,23 +56,22 @@
                     },
                 }">
                     <swiper-slide v-for="node in filteredServices" :key="node">
-                        
-                        <div class="hexagon">
-                            <div class="position-absolute top-50 start-50 translate-middle z-3">
-                                <aside class="text-center border">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam repellat enim nisi ducimus illo quia illum, eos sit quas cumque quasi nemo possimus sint vitae vero iure inventore, ab harum.</p>
-                                </aside>
-                            </div>
-                        </div>
+
+                        <!-- <section
+                            class="bg-light d-flex flex-column gap-3 align-items-center p-3 py-4 rounded-15 border">
+                            <a style="height: 24px;" :href="node.url"><strong
+                                    class="font-title text-center text-j-primary fs-6 text-uppercase py-2 mt-2">{{node.title}}</strong></a>
+                            <p style="height: 136.5px;"
+                                class="font-normal text-j-dark text-fade-7 fs-small text-justify">{{node.description}}
+                            </p>
+                            <a :aria-label="node.title" :href="node.url"
+                                class="text-j-dark fs-x-small font-normal d-flex align-items-center gap-2">show more <i
+                                    class="m-0 bi bi-arrow-right"></i></a>
+                        </section> -->
+                        <hexagon :data="node"></hexagon>
                     </swiper-slide>
                 </swiper-container>
             </div>
         </div>
     </div>
 </section>
-
-<!-- <section class="d-flex flex-column gap-3 align-items-center p-3 py-4 rounded-15 border">
-    <a style="height: 24px;"  :href="node.url" ><strong class="font-title text-center text-j-primary fs-6 text-uppercase py-2 mt-2">{{node.title}}</strong></a>
-    <p style="height: 136.5px;" class="font-normal text-j-dark text-fade-7 fs-small text-justify">{{node.description}}</p>
-    <a :aria-label="node.title" :href="node.url" class="text-j-dark fs-x-small font-normal d-flex align-items-center gap-2">show more <i class="m-0 bi bi-arrow-right"></i></a>
-</section> -->

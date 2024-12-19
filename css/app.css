@@ -647,25 +647,35 @@ a {
             calc(75% - var(--b)*cos(60deg)) calc(var(--b)*sin(60deg)),
             calc(25% + var(--b)*cos(60deg)) calc(var(--b)*sin(60deg)),
             var(--b) 50%);
-            
+
     position: relative;
     background: var(--j-primary);
 }
 
 /* HTML: <div class="hexagon"></div> */
 .hexagon-outline-vertical {
-    --b: 5px; /* adjust to control the border  */
+    --b: 5px;
+    /* adjust to control the border  */
     aspect-ratio: cos(30deg);
-    clip-path: 
-      polygon(50% 0,-50% 50%,50% 100%,150% 50%,50% 0,
-      50% var(--b),
-      calc(100% - var(--b)*sin(60deg)) calc(25% + var(--b)*cos(60deg)),
-      calc(100% - var(--b)*sin(60deg)) calc(75% - var(--b)*cos(60deg)),
-      50% calc(100% - var(--b)),
-      calc(var(--b)*sin(60deg)) calc(75% - var(--b)*cos(60deg)),
-      calc(var(--b)*sin(60deg)) calc(25% + var(--b)*cos(60deg)),
-      50% var(--b));
-      
+    clip-path:
+        polygon(50% 0, -50% 50%, 50% 100%, 150% 50%, 50% 0,
+            50% var(--b),
+            calc(100% - var(--b)*sin(60deg)) calc(25% + var(--b)*cos(60deg)),
+            calc(100% - var(--b)*sin(60deg)) calc(75% - var(--b)*cos(60deg)),
+            50% calc(100% - var(--b)),
+            calc(var(--b)*sin(60deg)) calc(75% - var(--b)*cos(60deg)),
+            calc(var(--b)*sin(60deg)) calc(25% + var(--b)*cos(60deg)),
+            50% var(--b));
+
     position: relative;
     background: var(--j-primary);
-  }
+}
+
+/* HTML: <div class="hexagon"></div> */
+.hexagon-vertical {
+    aspect-ratio: cos(30deg);
+    clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+    position: relative;
+    background-color: var(--j-primary);
+}
+
