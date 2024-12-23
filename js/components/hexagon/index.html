@@ -11,7 +11,9 @@
 </section> -->
 
 <section v-else class="">
-    <div class="ratio ratio-1x1">
-        <img :src="data.thumbnail" :alt="data.title" class="object-fit-contain rounded">
-    </div>
+    <a :href="data.url" class="pointer">
+        <div class="ratio ratio-1x1">
+            <img :src="data.thumbnail" :alt="data.title" class="object-fit-contain rounded">
+        </div>
+    </a>
 </section>

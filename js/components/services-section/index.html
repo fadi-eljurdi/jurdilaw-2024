@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <div class="col-12 d-lg-none">
+            <!-- <div class="col-12 d-lg-none">
                 <swiper-container id="s-swiper" :pagination="{clickable:true}" :spaceBetween="10" :breakpoints="{
                     0: {
                         slidesPerView: 2,
@@ -45,10 +45,16 @@
                         <button @click="slideNext()" role="button" class="btn btn-sm btn-outline-dark px-4">next</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="row justify-content-center gx-2" v-for="group in alternateByGroup()">
             <div class="col-lg-2 d-none d-lg-block" v-for="node in group">
+                <hexagon class="w-100 h-100" :data="node"></hexagon>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center gx-2">
+            <div class="col-6 col-md-4 d-lg-none" v-for="node in filteredServices">
                 <hexagon class="w-100 h-100" :data="node"></hexagon>
             </div>
         </div>
