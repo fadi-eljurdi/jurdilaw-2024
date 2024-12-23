@@ -23,7 +23,7 @@ export default {
             for (let node of this.store.services) {
                 node.icon = this.getIcon(node.id)
             }
-            return this.store.spinner ? [{},{},{},{},{},{},{},{}] : this.store.services.filter(node => node.badge.trim().toUpperCase() != 'DEMO')
+            return this.store.spinner ? [{}, {}, {}, {}, {}, {}, {}, {}] : this.store.services.filter(node => node.badge.trim().toUpperCase() != 'DEMO')
         }
 
     },
@@ -71,6 +71,39 @@ export default {
             ]
 
             return icons.filter(node => node.id == id).length === 0 ? 'https://placehold.co/100?text=IMG' : icons.filter(node => node.id == id)[0].src
-        }
+        },
+        alternateByGroup() {
+            function sortByGroup(array) {
+                const result = [];
+                let groupSize = 5; // Start with group size of 4
+                let index = 0;
+            
+                while (index < array.length) {
+                    // Slice the array to create groups of the current size
+                    const group = array.slice(index, index + groupSize);
+                    result.push(group);
+            
+                    // Move the index forward by the group size
+                    index += groupSize;
+            
+                    // Alternate the group size between 4 and 3
+                    groupSize = groupSize === 5 ? 4 : 5;
+                }
+            
+                return result;
+            }
+
+            return sortByGroup(this.filteredServices)
+        },
+        slideNext() {
+            const swiperEl = document.querySelector('#s-swiper');
+            // console.log(swiperEl.swiper);
+            swiperEl.swiper.slideNext();
+        },
+        slideBack() {
+            const swiperEl = document.querySelector('#s-swiper');
+            // console.log(swiperEl.swiper);
+            swiperEl.swiper.slidePrev();
+        },
     }
 }

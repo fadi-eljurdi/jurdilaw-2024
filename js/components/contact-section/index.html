@@ -3,9 +3,9 @@
         <div class="col-12 col-lg-9">
             <aside class="contact-container shadow-sm border rounded">
                 <section class="contact-form">
-                    <input v-model="inputName" type="text" class="contact-input font-normal fs-small" placeholder="Your name">
-                    <input v-model="inputSubject" type="text" class="contact-input font-normal fs-small" placeholder="The Subject">
-                    <textarea v-model="inputMessage" rows="5" class="contact-input font-normal fs-small" placeholder="Type your message.."></textarea>
+                    <input autocomplete="name" name="name" v-model="inputName" type="text" class="contact-input font-normal fs-small" placeholder="Your name">
+                    <input name="subject" v-model="inputSubject" type="text" class="contact-input font-normal fs-small" placeholder="The Subject">
+                    <textarea name="message" v-model="inputMessage" rows="5" class="contact-input font-normal fs-small" placeholder="Type your message.."></textarea>
                 </section>
                 <!-- <a aria-label="send message" :href="sendMessage" class="btn-action w-fit">Send message</a> -->
                 <button :disabled="store.spinner" class="btn-action w-fit" @click="sendMessageTo()">Send message</button>

@@ -626,7 +626,6 @@ a {
 /* Services */
 
 .hexagon {
-    /* adjust to control the size  */
     aspect-ratio: 1/cos(30deg);
     clip-path: polygon(50% -50%, 100% 50%, 50% 150%, 0 50%);
     position: relative;
@@ -635,8 +634,6 @@ a {
 
 .hexagon-outline {
     --b: 5px;
-    /* adjust to control the border  */
-    /* adjust to control the size  */
     aspect-ratio: 1/cos(30deg);
     clip-path:
         polygon(0 50%, 50% -50%, 100% 50%, 50% 150%, 0 50%,
@@ -648,14 +645,13 @@ a {
             calc(25% + var(--b)*cos(60deg)) calc(var(--b)*sin(60deg)),
             var(--b) 50%);
 
-    position: relative;
+    /* position: absolute; */
+    z-index: -1;
     background: var(--j-primary);
 }
 
-/* HTML: <div class="hexagon"></div> */
 .hexagon-outline-vertical {
     --b: 5px;
-    /* adjust to control the border  */
     aspect-ratio: cos(30deg);
     clip-path:
         polygon(50% 0, -50% 50%, 50% 100%, 150% 50%, 50% 0,
@@ -671,11 +667,18 @@ a {
     background: var(--j-primary);
 }
 
-/* HTML: <div class="hexagon"></div> */
 .hexagon-vertical {
     aspect-ratio: cos(30deg);
     clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
     position: relative;
     background-color: var(--j-primary);
+    transition: .3s;
 }
 
+.hex{
+    background-image: url(/assets/hex-rbg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    aspect-ratio: 1/1;
+}
