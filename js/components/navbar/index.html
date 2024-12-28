@@ -1,14 +1,14 @@
 <section id="navbar" style="transition: .5s;" :class="'position-fixed top-0 start-0 z-2 w-100 p-3 d-flex justify-content-between align-items-center'">
     <section class="d-flex align-items-center gap-5">
-        <img src="/assets/logo-3.png" alt="Jurdi logo" class="img-fluid" width="100"> 
+        <img src="/assets/logo-3.png" alt="Jurdi logo" class="img-fluid" width="120"> 
     </section>
     
     <section class="d-none d-lg-flex align-items-center gap-5 font-title">
-        <nav class="d-flex align-items-center gap-3">
+        <nav class="d-flex align-items-center gap-3 fs-5">
             <a aria-label="Home" href="/" :class="getActiveClass('/') + ' ' + getActiveClass('/index.html')">Home</a>
             <a aria-label="Services" href="/services/":class="getActiveClass('/services/')">Services</a>
-            <a aria-label="Policies" href="/docs/" :class="getActiveClass('/docs/')">Policies & Terms of use</a>
             <a aria-label="Blogs" href="/blogs/"  :class="getActiveClass('/blogs/')">News & Insights</a>
+            <a aria-label="Policies" href="/docs/" :class="getActiveClass('/docs/')">Policies & Terms of use</a>
         </nav>
         <a href="/contact/" class="btn-action">Contact</a>
     </section>

@@ -1,64 +1,44 @@
-<section style="overflow-x: hidden !important;">
-    <div class="container">
-        <div class="row justify-content-center g-3">
-            <div class="col-12">
+<section style="overflow: hidden !important; background-color: white;">
+    <div class="container my-5">
+        <div class="row justify-content-start g-1 mb-5">
+            <div class="col-12 my-3">
                 <div class="d-flex flex-column gap-2">
-                    <h3 data-aos="zoom-in-right" data-aos-duration="1000" class="font-title text-j-grey ps-2 border-tag-left">Our Services</h3>
-                    <p data-aos="zoom-out" data-aos-duration="1500" class="font-normal text-j-dark fs-small">Our focus is media and technology but we understand that our clients may need a helping hand in other areas of the law, for that we extend our assistance to our clients to cover other areas of practice, providing our clients with 360-degree legal service. </p>
+                    <h3 data-aos="zoom-in-right" data-aos-duration="1000"
+                        class="font-title text-j-grey ps-2 border-tag-left">Our Services</h3>
+                    <p data-aos="zoom-out" data-aos-duration="1500" class="font-normal text-j-dark fs-small">Our focus
+                        is media and technology but we understand that our clients may need a helping hand in other
+                        areas of the law, for that we extend our assistance to our clients to cover other areas of
+                        practice, providing our clients with 360-degree legal service. </p>
                 </div>
             </div>
-            <div class="col-12">
-                <swiper-container v-if="store.spinner" :pagination="{clickable:true}" :spaceBetween="10" :breakpoints="{
-                    768: {
-                        slidesPerView: 1,
-                        spaceBetween: 10,
-                    },
-                    1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 10,
-                    },
-                }">
-                    <swiper-slide v-for="node in filteredServices" :key="node">
-                        <section class="bg-light d-flex flex-column gap-4 align-items-center p-3 py-4 rounded-15 border">
-
-                            <div class="rounded-pill skeleton" style="width: 50%; height: .8rem;"></div>
+            
+            <div class="col-6 col-lg-3" v-for="node in filteredServices" :key="node" data-aos="zoom-in-up" :data-aos-duration="node.index * 200" data-aos-once="true">
+                <section v-if="store.spinner" class="bg-j-light d-flex flex-column flex-lg-row align-items-center gap-2 p-2 rounded border">
+                    <div class="ratio ratio-1x1" style="width: 70px;">
+                        <div class="object-fit-cover skeleton rounded"></div>
+                    </div>
+                    <div class="d-flex flex-column gap-2 w-100">
+                        <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
+                        <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
+                        <div class="rounded-pill skeleton" style="width: 70%; height: .3rem;"></div>
+                    </div>
+                </section>
+                <section class="h-100" v-else>
+                    <a :href="node.url" :aria-label="node.title">
+                        <section class="h-100 bg-j-light d-flex flex-column justify-content-evenly flex-lg-row align-items-center gap-2 p-2 rounded border position-relative">
+                            <figure class="ratio ratio-1x1" style="width: 70px;">
+                                <img :id="'service-img-' + node.id" loading="lazy" @error="node.isBrokenImg = true" :src="getIcon(node.id)" :alt="'img-'+node.id" class="object-fit-cover rounded img-scale">
+                                <!-- <img :id="'service-img-' + node.id" loading="lazy" @error="node.isBrokenImg = true" :src="utilities.isValidImg(getIcon(node.id))" :alt="'img-'+node.id" class="object-fit-cover rounded border"> -->
+                            </figure>
                             
-                            <div class="d-flex flex-column align-items-start gap-2 w-100">
-                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
-                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
-                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
-                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
-                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
-                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
-                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
-                                <div class="rounded-pill skeleton" style="width: 100%; height: .3rem;"></div>
-                                <div class="rounded-pill skeleton" style="width: 70%; height: .3rem;"></div>
+                            <div class="d-flex flex-column gap-2 w-100">
+                                <strong class="text-j-primary text-uppercase font-title text-wrap text-center">{{node.title}}</strong>
+                                <strong class="text-j-grey fs-x-small font-normal text-center">read more</strong>
                             </div>
-                            
-                            <div class="rounded-pill skeleton" style="width: 25%; height: .4rem;"></div>
+                            <!-- <span class="material-symbols-outlined position-absolute top-0 end-0 p-2 text-j-grey opacity-75">open_in_new</span> -->
                         </section>
-                        
-                    </swiper-slide>
-                </swiper-container>
-                <swiper-container v-else :pagination="{clickable:true}" :spaceBetween="10" :breakpoints="{
-                    768: {
-                        slidesPerView: 1,
-                        spaceBetween: 10,
-                    },
-                    1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 10,
-                    },
-                }">
-                    <swiper-slide v-for="node in filteredServices" :key="node">
-                        
-                        <section class="bg-light d-flex flex-column gap-3 align-items-center p-3 py-4 rounded-15 border">
-                            <a style="height: 24px;"  :href="node.url" ><strong class="font-title text-center text-j-primary fs-6 text-uppercase py-2 mt-2">{{node.title}}</strong></a>
-                            <p style="height: 136.5px;" class="font-normal text-j-dark text-fade-7 fs-small text-justify">{{node.description}}</p>
-                            <a :aria-label="node.title" :href="node.url" class="text-j-dark fs-x-small font-normal d-flex align-items-center gap-2">show more <i class="m-0 bi bi-arrow-right"></i></a>
-                        </section>
-                    </swiper-slide>
-                </swiper-container>
+                    </a>
+                </section>
             </div>
         </div>
     </div>

@@ -1,0 +1,19 @@
+<section v-if="store.spinner" class="hex p-5 d-flex justify-content-center align-items-center">
+    <aside class="d-flex flex-column gap-2 align-items-center p-3">
+        <div class="spinner-grow text-secondary"></div>
+    </aside>
+</section>
+<!-- <section v-else class="hex p-5 d-flex justify-content-center align-items-center border">
+    <aside class="d-flex flex-column gap-2 align-items-center p-5">
+        
+        <strong class="fs-small text-j-dark font-title text-center">{{data.title}}</strong>
+    </aside>
+</section> -->
+
+<section v-else class="">
+    <a :href="data.url" class="pointer">
+        <div class="ratio ratio-1x1">
+            <img :src="data.thumbnail" :alt="data.title" class="object-fit-contain rounded">
+        </div>
+    </a>
+</section>

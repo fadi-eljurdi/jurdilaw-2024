@@ -17781,8 +17781,21 @@ function getVismeId(url) {
     }
 }
 
+
+function isValidImg(obj = {}) {
+    // function that takes url of images, checks if the image is valid it returns the url else it return fallback img src
+    return obj.isBrokenImg ? '/assets/img-placeholder.svg' : obj.media
+}
+
+function refreshImg(id, src) {
+    document.getElementById(id).setAttribute('src', src)
+}
+
+
 export default {
     getSymbols,
+    isValidImg,
+    refreshImg,
     getVismeId,
     copi,
     symbolise,
