@@ -3,7 +3,8 @@
         <div class="col-12 col-lg-9">
             <aside class="contact-container shadow-sm border rounded">
                 <section class="contact-form">
-                    <input autocomplete="name" name="name" v-model.trim="inputName" type="text" class="contact-input font-normal fs-small" placeholder="Your name">
+                    <input autocomplete="none" name="email" v-model.trim="inputEmail" type="email" class="contact-input font-normal fs-small" placeholder="Your email">
+                    <input autocomplete="none" name="name" v-model.trim="inputName" type="text" class="contact-input font-normal fs-small" placeholder="Your name">
                     <input name="subject" v-model.trim="inputSubject" type="text" class="contact-input font-normal fs-small" placeholder="The Subject">
                     <textarea name="message" v-model.trim="inputMessage" rows="5" class="contact-input font-normal fs-small" placeholder="Type your message.."></textarea>
                 </section>
