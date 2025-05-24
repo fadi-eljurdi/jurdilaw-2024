@@ -16,7 +16,6 @@ export default {
     // sendMessage() {
     //     return `mailto:${this.store.contact.email}?subject=${encodeURIComponent(this.inputSubject)}&body=${encodeURIComponent('Name: ' + this.inputName + ' - \n\n' + this.inputMessage)}`
     // }
-    
   },
   methods: {
     sendMessage() {
@@ -33,12 +32,15 @@ export default {
         body: JSON.stringify(payload),
       }).then((res) => {
         console.log(res);
-        alert('Thanks! Your message has been sent successfully.')
+        alert("Thanks! Your message has been sent successfully.");
       });
     },
     sendMessageTo() {
       //   location.href = this.sendMessage;
-      this.sendMessage();
+
+      if (this.inputName !== "" && this.inputSubject !== "" && this.inputMessage !== "") {
+        this.sendMessage();
+      } else alert("please fill out all the required fields to send a message.");
     },
   },
 };
