@@ -52,7 +52,8 @@
 :root {
     --j-black: #070707;
     --j-dark: #14213d;
-    --j-primary: #fca311;
+    /* --j-primary: #fca311; */
+    --j-primary:#c0a586;
     --j-grey: #8d99ae;
     --j-light: #f7f7f7;
     --j-white: #f7f7f7;

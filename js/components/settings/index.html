@@ -1,0 +1,43 @@
+<section>
+  <div v-if="store.showSettings" class="position-fixed bottom-0 end-0 z-3 m-3">
+    <div role="button" class="btn-action" data-bs-toggle="modal" data-bs-target="#settingsModal"><i class="bi bi-sliders"></i></div>
+  </div>
+  <!-- Modal -->
+  <aside class="modal modal-lg fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title font-title fs-5">Website Settings</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body font-normal">
+          <div class="d-flex flex-column gap-2">
+            <b>Update Colors</b>
+            <div class="input-group">
+              <span class="input-group-text bg-j-primary"></span>
+              <input v-model="colors.primary" id="primaryColor" type="text" placeholder="Primary Hex color code" class="form-control" />
+            </div>
+            <div class="input-group">
+              <span class="input-group-text bg-j-grey"></span>
+              <input v-model="colors.grey" id="greyColor" type="text" placeholder="Grey Hex color code" class="form-control" />
+            </div>
+            <div class="input-group">
+              <span class="input-group-text bg-j-dark"></span>
+              <input v-model="colors.dark" id="darkColor" type="text" placeholder="Dark Hex color code" class="form-control" />
+            </div>
+            <div class="input-group">
+              <span class="input-group-text bg-j-light"></span>
+              <input v-model="colors.light" id="lightColor" type="text" placeholder="Light Hex color code" class="form-control" />
+            </div>
+          </div>
+          <hr />
+
+          <button @click="updateLogo()" class="btn btn-sm btn-outline-dark">Upload new Logo</button>
+        </div>
+        <div class="modal-footer">
+          <button @click="saveColors()" type="button" class="btn-action">Save Color Changes</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+</section>

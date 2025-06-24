@@ -16,6 +16,8 @@ export default {
     nextContact: {},
     nextPage: new Page(),
     navbarBg: 'bg-transparent',
-    nextUpdatedPage: new Page()
+    nextUpdatedPage: new Page(),
+    showSettings: true,
+    logo:'/assets/logo-3.png'
 
 }
