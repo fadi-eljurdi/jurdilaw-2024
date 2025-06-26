@@ -114,7 +114,7 @@ var app = {
                 const API_KEY = this.store.geminiToken
                 // Access your API key (see "Set up your API key" above)
                 const genAI = new GoogleGenerativeAI(API_KEY);
-                const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+                const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
                 const result = await model.generateContent(prompt);
                 const response = await result.response;
                 // console.log(response);
