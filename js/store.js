@@ -18,6 +18,6 @@ export default {
     navbarBg: 'bg-transparent',
     nextUpdatedPage: new Page(),
     showSettings: true,
-    logo:'/assets/logo-3.png'
+    logo:'/assets/logo-2025-1.png'
 
 }
