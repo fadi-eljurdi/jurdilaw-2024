@@ -91,6 +91,9 @@ app.component('footer-section', footerSection)
 import hexagon from './components/hexagon/index.js'
 app.component('hexagon', hexagon)
 
+import settings from './components/settings/index.js'
+app.component('settings', settings)
+
 // BLOGS Components
 import spinner from './components/spinner/index.js'
 app.component('spinner', spinner)
